@@ -1,0 +1,155 @@
+[
+  {
+    "recipe_id": "rec-31490",
+    "title": "A Bit Different  Breakfast Pizza",
+    "prep_time_minutes": 30,
+    "matched_ingredients": [
+      "milk",
+      "cheese"
+    ],
+    "instructions": [
+      "preheat oven to 425 degrees f",
+      "press dough into the bottom and sides of a 12 inch pizza pan",
+      "bake for 5 minutes until set but not browned",
+      "cut sausage into small pieces"
+    ]
+  },
+  {
+    "recipe_id": "rec-112140",
+    "title": "All In The Kitchen  Chili",
+    "prep_time_minutes": 130,
+    "matched_ingredients": [
+      "ground beef",
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "brown ground beef in large pot",
+      "add chopped onions to ground beef when almost brown and sautee until wilted",
+      "add all other ingredients",
+      "add kidney beans if you like beans in your chili"
+    ]
+  },
+  {
+    "recipe_id": "rec-54272",
+    "title": "Fool The Meat Eaters  Chili",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "ground beef",
+      "tomato"
+    ],
+    "instructions": [
+      "rehydrate tvp if needed",
+      "spray or oil a large pot",
+      "chop the onion , hot peppers , and garlic and add to the pot",
+      "chop remaining vegetables , add to pot and brown lightly"
+    ]
+  },
+  {
+    "recipe_id": "rec-47366",
+    "title": "Forgotten  Minestrone",
+    "prep_time_minutes": 495,
+    "matched_ingredients": [
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "in a slow cooker , combine the first nine ingredients",
+      "cover and cook on low for 7-9 hours or until meat is tender",
+      "add zucchini , cabbage , beans and macaroni",
+      "cook on high 30-45 minutes more or until the vegetables are tender"
+    ]
+  },
+  {
+    "recipe_id": "rec-59952",
+    "title": "Global Gourmet  Taco Casserole",
+    "prep_time_minutes": 55,
+    "matched_ingredients": [
+      "ground beef",
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "heat oven to 375 degrees",
+      "brown ground beef and onion over medium heat",
+      "drain",
+      "stir in tomato sauce , taco or other sauce , salt , pepper , tabasco , chiles , and cornmeal , adjusting for\"hot\" taste preference and desired thickness"
+    ]
+  },
+  {
+    "recipe_id": "rec-25775",
+    "title": "How I Got My Family To Eat Spinach  Spinach Casserole",
+    "prep_time_minutes": 50,
+    "matched_ingredients": [
+      "mushroom",
+      "cheese"
+    ],
+    "instructions": [
+      "preheat oven to 350 degrees",
+      "place spinach in strainer and squeeze all extra liquid from it",
+      "in a large bowl , combine spinach with the rest of ingredients , except croutons , and combine well",
+      "pour into a 2 quart casserole dish and top with croutons"
+    ]
+  },
+  {
+    "recipe_id": "rec-22123",
+    "title": "I Don T Feel Like Cooking Tonight  Casserole",
+    "prep_time_minutes": 45,
+    "matched_ingredients": [
+      "mushroom",
+      "ground beef"
+    ],
+    "instructions": [
+      "brown onion and meat in the oil , drain any excess moisture",
+      "remove from heat and add both cans of soup and the veggies of your choice and stir",
+      "salt and pepper to taste",
+      "pour mixture into a greased 9x9 inch baking pan"
+    ]
+  },
+  {
+    "recipe_id": "rec-58224",
+    "title": "Immoral  Sandwich Filling  Loose Meat",
+    "prep_time_minutes": 35,
+    "matched_ingredients": [
+      "ground beef",
+      "cheese"
+    ],
+    "instructions": [
+      "brown the meat & drain fat",
+      "stir in sugar , mustard , beer , cayenne , garlic and salt & pepper to taste",
+      "simmer until liquid has mostly cooked away",
+      "lay slices of cheese over top of meat , then cover for about 5 minutes , with heat on very low , until cheese has melted"
+    ]
+  },
+  {
+    "recipe_id": "rec-33606",
+    "title": "Italian Sandwich  Pasta Salad",
+    "prep_time_minutes": 25,
+    "matched_ingredients": [
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "cook pasta and set aside",
+      "place onions , dill pickles , olives , water chestnuts , chives and peppers in a bowl",
+      "add oil , vinegar and spices",
+      "marinate for 15-20 minutes or so"
+    ]
+  },
+  {
+    "recipe_id": "rec-53402",
+    "title": "Killer  Lasagna",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "ground beef",
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "brown the sausage and ground meat and drain all the fat",
+      "add all the other ingredients for the meat filling and simmer on the stove , uncovered , for about 1 / 2 hour",
+      "i usually add a bay leaf or two",
+      "mix up the cheese filling and set aside in fridge until ready to use"
+    ]
+  }
+]

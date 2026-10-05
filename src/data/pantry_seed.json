@@ -1,0 +1,122 @@
+[
+  {
+    "id": "item-001",
+    "name": "Tavuk Göğsü",
+    "ingredient_lookup": "chicken breast",
+    "category": "Et, Tavuk & Balık",
+    "quantity": 500,
+    "unit": "gram",
+    "expiration_date": "2026-10-08",
+    "days_remaining": 2,
+    "status": "RED",
+    "priority_score": 2
+  },
+  {
+    "id": "item-002",
+    "name": "Süt",
+    "ingredient_lookup": "milk",
+    "category": "Süt & Süt Ürünleri",
+    "quantity": 1000,
+    "unit": "ml",
+    "expiration_date": "2026-10-09",
+    "days_remaining": 3,
+    "status": "YELLOW",
+    "priority_score": 3
+  },
+  {
+    "id": "item-003",
+    "name": "Mantar",
+    "ingredient_lookup": "mushroom",
+    "category": "Sebze & Meyve",
+    "quantity": 300,
+    "unit": "gram",
+    "expiration_date": "2026-10-08",
+    "days_remaining": 2,
+    "status": "RED",
+    "priority_score": 2
+  },
+  {
+    "id": "item-004",
+    "name": "Kıyma",
+    "ingredient_lookup": "ground beef",
+    "category": "Et, Tavuk & Balık",
+    "quantity": 400,
+    "unit": "gram",
+    "expiration_date": "2026-10-10",
+    "days_remaining": 4,
+    "status": "YELLOW",
+    "priority_score": 4
+  },
+  {
+    "id": "item-005",
+    "name": "Kaşar Peyniri",
+    "ingredient_lookup": "cheese",
+    "category": "Süt & Süt Ürünleri",
+    "quantity": 250,
+    "unit": "gram",
+    "expiration_date": "2026-10-11",
+    "days_remaining": 5,
+    "status": "YELLOW",
+    "priority_score": 5
+  },
+  {
+    "id": "item-006",
+    "name": "Domates",
+    "ingredient_lookup": "tomato",
+    "category": "Sebze & Meyve",
+    "quantity": 4,
+    "unit": "adet",
+    "expiration_date": "2026-10-12",
+    "days_remaining": 6,
+    "status": "YELLOW",
+    "priority_score": 6
+  },
+  {
+    "id": "item-007",
+    "name": "Havuç",
+    "ingredient_lookup": "carrot",
+    "category": "Sebze & Meyve",
+    "quantity": 5,
+    "unit": "adet",
+    "expiration_date": "2026-10-18",
+    "days_remaining": 12,
+    "status": "GREEN",
+    "priority_score": 12
+  },
+  {
+    "id": "item-008",
+    "name": "Yumurta",
+    "ingredient_lookup": "egg",
+    "category": "Kahvaltılık & Şarküteri",
+    "quantity": 10,
+    "unit": "adet",
+    "expiration_date": "2026-10-24",
+    "days_remaining": 18,
+    "status": "GREEN",
+    "priority_score": 18
+  },
+  {
+    "id": "item-009",
+    "name": "Kırmızı Mercimek",
+    "ingredient_lookup": "lentil",
+    "category": "Bakliyat & Kuru Gıda",
+    "quantity": 1,
+    "unit": "kg",
+    "expiration_date": "2027-04-04",
+    "days_remaining": 180,
+    "status": "GREEN",
+    "priority_score": 180
+  },
+  {
+    "id": "item-010",
+    "name": "Makarna",
+    "ingredient_lookup": "pasta",
+    "category": "Bakliyat & Kuru Gıda",
+    "quantity": 2,
+    "unit": "paket",
+    "expiration_date": "2027-08-02",
+    "days_remaining": 300,
+    "status": "GREEN",
+    "priority_score": 300
+  }
+]
