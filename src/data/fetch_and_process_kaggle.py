@@ -1,7 +1,6 @@
 """
 Kaggle Food.com ve USDA FoodKeeper veri setlerinden dinamik veri işleme boru hattı.
 Tüm kiler ve tarif verileri doğrudan Kaggle'dan indirilen veri setlerinden okunur.
-Kod içerisinde hiçbir statik ürün veya tarif verisi tutulmaz.
 """
 
 import os

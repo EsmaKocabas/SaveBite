@@ -1,6 +1,4 @@
-/**
- * Risk durumuna göre kurtarma puanı ağırlıkları.
- */
+// Risk durumuna göre kurtarma puanı ağırlıkları.
 const SCORE_WEIGHTS = {
   RED: 50,
   YELLOW: 20,
@@ -34,7 +32,7 @@ function matchAndRankRecipes(pantryItems, recipes) {
 
     ingredients.forEach(rawIng => {
       const ingLower = rawIng.toLowerCase().trim();
-      
+
       let matchedPantryItem = null;
       for (const [pantryKey, pantryVal] of pantryMap.entries()) {
         if (ingLower.includes(pantryKey) || pantryKey.includes(ingLower)) {

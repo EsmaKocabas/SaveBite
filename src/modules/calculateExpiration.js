@@ -1,5 +1,5 @@
 /**
- * Kalan gün sayısına göre ürünün risk durumunu (RED, YELLOW, GREEN) hesaplar.
+ * Kalan gün sayısına göre ürünün risk durumunu hesaplar.
  * 
  * - RED    : <= 2 gün (Acil tüketim)
  * - YELLOW : 3-6 gün  (Haftalık planlama)
@@ -19,7 +19,7 @@ function calculateExpirationStatus(expirationDate) {
   const daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   let status = "GREEN";
-  let labelTr = "Güvenli Kiler";
+  let labelTr = "Güvenli";
 
   if (daysRemaining <= 2) {
     status = "RED";
