@@ -211,7 +211,7 @@ def parse_foodkeeper_dataset():
     return extracted_products
 
 
-def build_pantry_seed_from_kaggle(today, target_count=100):
+def build_pantry_seed_from_kaggle(today, target_count=105):
     """
     Kaggle FoodKeeper veri setinden dinamik olarak okunan ürünlerle
     evsel kiler envanterini oluşturur. Kalan günleri hesaplar.
@@ -342,7 +342,7 @@ def main():
     today = datetime(2026, 10, 6)
 
     # 1. Kaggle FoodKeeper veri setinden kiler verisini dinamik olarak üret
-    pantry_seed = build_pantry_seed_from_kaggle(today, target_count=100)
+    pantry_seed = build_pantry_seed_from_kaggle(today, target_count=105)
 
     # 2. Kaggle Food.com CSV veri setinden kurtarma tariflerini dinamik olarak filtrele
     recipes_seed = match_rescue_recipes(pantry_seed, target_count=100)

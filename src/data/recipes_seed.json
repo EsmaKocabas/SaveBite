@@ -20,8 +20,8 @@
     "title": "Chicken Lickin  Good  Pork Chops",
     "prep_time_minutes": 500,
     "matched_ingredients": [
-      "chicken",
-      "pork"
+      "pork",
+      "chicken"
     ],
     "instructions": [
       "dredge pork chops in mixture of flour , salt , dry mustard and garlic powder",
@@ -36,8 +36,8 @@
     "title": "Chinese  Chop Suey",
     "prep_time_minutes": 70,
     "matched_ingredients": [
-      "beef",
-      "pork"
+      "pork",
+      "beef"
     ],
     "instructions": [
       "brown ground meat and onion in a large pot",
@@ -115,9 +115,9 @@
     "title": "Real  Italian Bolognese Sauce",
     "prep_time_minutes": 160,
     "matched_ingredients": [
+      "pork",
       "beef",
-      "bacon",
-      "pork"
+      "bacon"
     ],
     "instructions": [
       "in a dutch oven or medium size pot , heat butter and olive oil over medium heat until butter begins to froth",
@@ -149,8 +149,8 @@
     "prep_time_minutes": 330,
     "matched_ingredients": [
       "beef",
-      "olives",
-      "turkey"
+      "turkey",
+      "olives"
     ],
     "instructions": [
       "you will also need: 1 8-inch round cake pan , 3\" deep",
@@ -181,8 +181,8 @@
     "title": "2000 Meatloaf",
     "prep_time_minutes": 90,
     "matched_ingredients": [
-      "goat",
-      "bacon"
+      "bacon",
+      "goat"
     ],
     "instructions": [
       "pan fry bacon , and set aside on a paper towel to absorb excess grease",
@@ -198,8 +198,8 @@
     "prep_time_minutes": 125,
     "matched_ingredients": [
       "beef",
-      "chicken",
-      "sour cream"
+      "sour cream",
+      "chicken"
     ],
     "instructions": [
       "coat the meat with 1 / 2 c of flour and the paprika",
@@ -214,9 +214,9 @@
     "title": "50 Chili   For The Crockpot",
     "prep_time_minutes": 345,
     "matched_ingredients": [
+      "pork",
       "beef",
-      "chicken",
-      "pork"
+      "chicken"
     ],
     "instructions": [
       "combine all ingredients in a 7-quart crockpot",
@@ -230,8 +230,8 @@
     "title": "Der Wiener Schnitzel Style Chili Dog Sauce",
     "prep_time_minutes": 55,
     "matched_ingredients": [
-      "beef",
-      "pork"
+      "pork",
+      "beef"
     ],
     "instructions": [
       "in a large size dutch oven or large size deep sauce pan , brown ground beef and ground pork over medium heat , making sure that the meat is well crumbled",
@@ -246,8 +246,8 @@
     "title": "Bake In  Oozy Bread",
     "prep_time_minutes": 35,
     "matched_ingredients": [
-      "buttermilk",
-      "bacon"
+      "bacon",
+      "buttermilk"
     ],
     "instructions": [
       "preheat oven to 375f",
@@ -262,9 +262,9 @@
     "title": "Better Than A Baked Potato  Soup",
     "prep_time_minutes": 30,
     "matched_ingredients": [
+      "sour cream",
       "bacon",
-      "chicken",
-      "sour cream"
+      "chicken"
     ],
     "instructions": [
       "peel potatoes and cut into large chunks",
@@ -295,8 +295,8 @@
     "title": "Coal Miners  Gnocchi",
     "prep_time_minutes": 40,
     "matched_ingredients": [
-      "goat",
-      "bacon"
+      "bacon",
+      "goat"
     ],
     "instructions": [
       "prepare potatoes per package instructions",
@@ -327,8 +327,8 @@
     "title": "Drunken  Pork Chops",
     "prep_time_minutes": 30,
     "matched_ingredients": [
-      "chicken",
-      "pork"
+      "pork",
+      "chicken"
     ],
     "instructions": [
       "season pork with salt and pepper",
@@ -343,8 +343,8 @@
     "title": "Go Bears   Party Ryes",
     "prep_time_minutes": 25,
     "matched_ingredients": [
-      "sausage",
-      "pork"
+      "pork",
+      "sausage"
     ],
     "instructions": [
       "brown meats and drain off fat",
@@ -375,8 +375,8 @@
     "title": "Kicked Up  Oven Fried Chicken",
     "prep_time_minutes": 345,
     "matched_ingredients": [
-      "buttermilk",
-      "chicken"
+      "chicken",
+      "buttermilk"
     ],
     "instructions": [
       "in a large bowl whisk the buttermilk , oil , hot pepper sauce , minced garlic , dijon mustard , 1 teaspoon salt and about 1 / 2 teaspoon black pepper",
@@ -407,8 +407,8 @@
     "title": "Leftover  Lo Mein For Two",
     "prep_time_minutes": 9,
     "matched_ingredients": [
-      "chicken",
-      "cooked pasta"
+      "cooked pasta",
+      "chicken"
     ],
     "instructions": [
       "combine everything but pasta on stove top and heat until bubbling",
@@ -420,8 +420,8 @@
     "title": "Loaded   Deviled Eggs",
     "prep_time_minutes": 20,
     "matched_ingredients": [
-      "bacon",
-      "sour cream"
+      "sour cream",
+      "bacon"
     ],
     "instructions": [
       "transfer egg yolks from halves to mixing bowl & combine with remaining ingredients",
@@ -435,8 +435,8 @@
     "title": "Meal In A Bowl   Guacamole Salad",
     "prep_time_minutes": 25,
     "matched_ingredients": [
-      "olives",
-      "sour cream"
+      "sour cream",
+      "olives"
     ],
     "instructions": [
       "to make the salad: have all ingredients chilled",
@@ -451,8 +451,8 @@
     "title": "Party  Taco Dip",
     "prep_time_minutes": 10,
     "matched_ingredients": [
-      "olives",
-      "sour cream"
+      "sour cream",
+      "olives"
     ],
     "instructions": [
       "in a large mixing bowl blend the following ingredients: cream cheese , sour cream , mayonnaise",
@@ -467,8 +467,8 @@
     "title": "Pizza Pan  Potato Skins",
     "prep_time_minutes": 60,
     "matched_ingredients": [
-      "bacon",
-      "sour cream"
+      "sour cream",
+      "bacon"
     ],
     "instructions": [
       "preheat oven to 375f",
@@ -483,8 +483,8 @@
     "title": "Roast Pork   And Apple Dinner",
     "prep_time_minutes": 30,
     "matched_ingredients": [
-      "chicken",
-      "pork"
+      "pork",
+      "chicken"
     ],
     "instructions": [
       "spray large nonstick skillet with cooking spray",
@@ -499,10 +499,10 @@
     "title": "Skinny  Meatloaf",
     "prep_time_minutes": 105,
     "matched_ingredients": [
-      "turkey",
+      "pork",
       "bacon",
-      "chicken",
-      "pork"
+      "turkey",
+      "chicken"
     ],
     "instructions": [
       "preheat oven to 350f",
@@ -517,8 +517,8 @@
     "title": "Sloughed  Tortellini Salad",
     "prep_time_minutes": 75,
     "matched_ingredients": [
-      "olives",
-      "sour cream"
+      "sour cream",
+      "olives"
     ],
     "instructions": [
       "cook and drain tortellini as directed on package",
@@ -533,9 +533,9 @@
     "title": "This Old House    Dressing",
     "prep_time_minutes": 30,
     "matched_ingredients": [
-      "buttermilk",
+      "sour cream",
       "bacon",
-      "sour cream"
+      "buttermilk"
     ],
     "instructions": [
       "dressing",
@@ -583,9 +583,9 @@
     "title": "Chipotle  Style Chicken Burrito Bowls",
     "prep_time_minutes": 40,
     "matched_ingredients": [
+      "sour cream",
       "guacamole",
-      "chicken",
-      "sour cream"
+      "chicken"
     ],
     "instructions": [
       "cut up chicken and add cumin , taco seasoning salt + pepper , paprika , and adobo , set to the side",
@@ -600,9 +600,9 @@
     "title": "Fried  Pork Chops And Gravy",
     "prep_time_minutes": 40,
     "matched_ingredients": [
+      "pork",
       "beef",
-      "chicken",
-      "pork"
+      "chicken"
     ],
     "instructions": [
       "in a blender combine the marinade ingredients",
@@ -650,8 +650,8 @@
     "title": "Little Kick  Jalapeno Burgers",
     "prep_time_minutes": 16,
     "matched_ingredients": [
-      "turkey",
-      "sour cream"
+      "sour cream",
+      "turkey"
     ],
     "instructions": [
       "in a large bowl , combine the first eight ingredients",
@@ -666,8 +666,8 @@
     "title": "Loco Moco  Style Hamburger Steak With Gravy",
     "prep_time_minutes": 30,
     "matched_ingredients": [
-      "beef",
-      "cooked rice"
+      "cooked rice",
+      "beef"
     ],
     "instructions": [
       "mix bread cubes with milk or water until bread is softened",
@@ -714,9 +714,9 @@
     "title": "One Pot   Dinner",
     "prep_time_minutes": 260,
     "matched_ingredients": [
+      "pork",
       "beef",
-      "bacon",
-      "pork"
+      "bacon"
     ],
     "instructions": [
       "brwon ground beef in skillet , drain off fat and put in crock pot",
@@ -731,8 +731,8 @@
     "title": "Puerto Rican Style  Fried Rice",
     "prep_time_minutes": 15,
     "matched_ingredients": [
-      "olives",
-      "pork"
+      "pork",
+      "olives"
     ],
     "instructions": [
       "have all of the ingredients ready to add to your pan before you start",
@@ -779,8 +779,8 @@
     "title": "The Best   Beef Stroganoff",
     "prep_time_minutes": 135,
     "matched_ingredients": [
-      "beef",
       "cooked rice",
+      "beef",
       "sour cream"
     ],
     "instructions": [
@@ -796,9 +796,9 @@
     "title": "The Gumbo Pages  Traditional Red Beans And Rice",
     "prep_time_minutes": 1680,
     "matched_ingredients": [
-      "turkey",
       "cooked rice",
-      "sausage"
+      "sausage",
+      "turkey"
     ],
     "instructions": [
       "soak the beans overnight , if possible",
@@ -829,8 +829,8 @@
     "title": "U  Wing It Pork Loin Chops",
     "prep_time_minutes": 65,
     "matched_ingredients": [
-      "sour cream",
-      "pork"
+      "pork",
+      "sour cream"
     ],
     "instructions": [
       "brown chops in oil in a frying pan",
@@ -861,8 +861,8 @@
     "title": "90S Style Meatloaf",
     "prep_time_minutes": 75,
     "matched_ingredients": [
-      "beef",
-      "pork"
+      "pork",
+      "beef"
     ],
     "instructions": [
       "mix all ingredients and pack into a greased 8\" x 4\" loaf pan",
@@ -893,8 +893,8 @@
     "prep_time_minutes": 15,
     "matched_ingredients": [
       "beef",
-      "chicken",
-      "sour cream"
+      "sour cream",
+      "chicken"
     ],
     "instructions": [
       "melt butter in large nonstick skillet",
@@ -956,8 +956,8 @@
     "title": "Chive  Goat Cheese Mashed Potatoes",
     "prep_time_minutes": 80,
     "matched_ingredients": [
-      "goat",
-      "sour cream"
+      "sour cream",
+      "goat"
     ],
     "instructions": [
       "peel potatoes and cut in half crosswise",
@@ -988,8 +988,8 @@
     "title": "Make Ahead  Flaky Sausage Foldovers",
     "prep_time_minutes": 40,
     "matched_ingredients": [
-      "sausage",
-      "pork"
+      "pork",
+      "sausage"
     ],
     "instructions": [
       "heat oven to 425 degrees",
@@ -1004,8 +1004,8 @@
     "title": "Un Stuffed Pork Chops With Mushroom Sauce",
     "prep_time_minutes": 60,
     "matched_ingredients": [
-      "chicken",
-      "pork"
+      "pork",
+      "chicken"
     ],
     "instructions": [
       "preheat oven to 350 degrees f",
@@ -1020,8 +1020,8 @@
     "title": "Copycat   Costa Vida Ranch Salad Dressing",
     "prep_time_minutes": 7,
     "matched_ingredients": [
-      "buttermilk",
-      "sour cream"
+      "sour cream",
+      "buttermilk"
     ],
     "instructions": [
       "put all ingredients in the blender and blend well",
@@ -1036,8 +1036,8 @@
     "title": "Baked Potato   Baked  Microwaved Or Grilled",
     "prep_time_minutes": 64,
     "matched_ingredients": [
-      "bacon",
-      "sour cream"
+      "sour cream",
+      "bacon"
     ],
     "instructions": [
       "for baked:",
@@ -1052,8 +1052,8 @@
     "title": "1 Potato 2 Potato",
     "prep_time_minutes": 30,
     "matched_ingredients": [
-      "bacon",
-      "sour cream"
+      "sour cream",
+      "bacon"
     ],
     "instructions": [
       "preheat oven to 400 degrees fahrenheit",
@@ -1165,8 +1165,8 @@
     "title": "108 Mile Spinach Bacon Salad",
     "prep_time_minutes": 20,
     "matched_ingredients": [
-      "buttermilk",
-      "bacon"
+      "bacon",
+      "buttermilk"
     ],
     "instructions": [
       "toss all the salad ingredients",
@@ -1213,8 +1213,8 @@
     "title": "15 Minute Chicken Fajitas",
     "prep_time_minutes": 15,
     "matched_ingredients": [
-      "chicken",
-      "sour cream"
+      "sour cream",
+      "chicken"
     ],
     "instructions": [
       "heat 1 tbsp oil in your wok until smoking",
@@ -1229,8 +1229,8 @@
     "title": "15 Minute Chicken Tortilla Soup",
     "prep_time_minutes": 12,
     "matched_ingredients": [
-      "chicken",
-      "sour cream"
+      "sour cream",
+      "chicken"
     ],
     "instructions": [
       "in a medium pot , mix all canned ingredients",
@@ -1243,8 +1243,8 @@
     "title": "15 Minute Pork Fried Rice",
     "prep_time_minutes": 20,
     "matched_ingredients": [
-      "chicken",
-      "pork"
+      "pork",
+      "chicken"
     ],
     "instructions": [
       "heat oil in large skillet",
@@ -1275,9 +1275,9 @@
     "title": "15 Minute No Fry Chicken Enchiladas  Honest",
     "prep_time_minutes": 45,
     "matched_ingredients": [
-      "olives",
+      "sour cream",
       "chicken",
-      "sour cream"
+      "olives"
     ],
     "instructions": [
       "thoroughly mix green chili enchilada sauce , soup , and sour cream in a large bowl",
@@ -1356,8 +1356,8 @@
     "title": "1St Time Host Stuffing",
     "prep_time_minutes": 90,
     "matched_ingredients": [
-      "turkey",
-      "sausage"
+      "sausage",
+      "turkey"
     ],
     "instructions": [
       "saute the sausage meat and oil in a medium frying pan",
@@ -1372,8 +1372,8 @@
     "title": "2 In 1   Herbed Chicken   Leftover Chicken Salad",
     "prep_time_minutes": 60,
     "matched_ingredients": [
-      "olives",
-      "chicken"
+      "chicken",
+      "olives"
     ],
     "instructions": [
       "herbed chicken :",
@@ -1388,8 +1388,8 @@
     "title": "20 Min  Sour Cream Chicken Enchiladas",
     "prep_time_minutes": 40,
     "matched_ingredients": [
-      "chicken",
-      "sour cream"
+      "sour cream",
+      "chicken"
     ],
     "instructions": [
       "heat tortillas in oil and drain",
@@ -1420,8 +1420,8 @@
     "title": "20 Minute Posole",
     "prep_time_minutes": 20,
     "matched_ingredients": [
-      "olives",
-      "chicken"
+      "chicken",
+      "olives"
     ],
     "instructions": [
       "in a large pot , over medium heat , combine oil , onion , garlic , oregano and cumin",
@@ -1516,8 +1516,8 @@
     "title": "3 Bean Baked Beans",
     "prep_time_minutes": 80,
     "matched_ingredients": [
-      "bacon",
-      "pork"
+      "pork",
+      "bacon"
     ],
     "instructions": [
       "in a large bowl combine cooked bacon , hamburger , onion , kidney beans , pork and beans and butter beans",
@@ -1531,8 +1531,8 @@
     "title": "3 Cheese Chicken Enchiladas",
     "prep_time_minutes": 40,
     "matched_ingredients": [
-      "chicken",
-      "sour cream"
+      "sour cream",
+      "chicken"
     ],
     "instructions": [
       "heat oven to 350 degrees",
@@ -1547,8 +1547,8 @@
     "title": "3 Meat Breakfast Pizza",
     "prep_time_minutes": 25,
     "matched_ingredients": [
-      "bacon",
-      "sausage"
+      "sausage",
+      "bacon"
     ],
     "instructions": [
       "preheat oven to 400f",
@@ -1579,8 +1579,8 @@
     "title": "3 Ingredient Carnitas",
     "prep_time_minutes": 190,
     "matched_ingredients": [
-      "sour cream",
-      "pork"
+      "pork",
+      "sour cream"
     ],
     "instructions": [
       "preheat oven to 350 degrees f",
@@ -1595,9 +1595,9 @@
     "title": "3 Layer Mexican Party Dip",
     "prep_time_minutes": 30,
     "matched_ingredients": [
+      "sour cream",
       "guacamole",
-      "olives",
-      "sour cream"
+      "olives"
     ],
     "instructions": [
       "spread the beans over the bottom of a 10\" round glass baking dish",

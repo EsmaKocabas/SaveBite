@@ -1198,5 +1198,65 @@
     "days_remaining": 12,
     "status": "GREEN",
     "priority_score": 12
+  },
+  {
+    "id": "item-101",
+    "name": "Doughnuts",
+    "ingredient_lookup": "doughnuts",
+    "category": "Ekmek & Unlu Mamuller",
+    "quantity": 500,
+    "unit": "gram",
+    "expiration_date": "2026-10-07",
+    "days_remaining": 1,
+    "status": "RED",
+    "priority_score": 1
+  },
+  {
+    "id": "item-102",
+    "name": "Fruit cake",
+    "ingredient_lookup": "fruit cake",
+    "category": "Ekmek & Unlu Mamuller",
+    "quantity": 500,
+    "unit": "gram",
+    "expiration_date": "2027-04-04",
+    "days_remaining": 180,
+    "status": "GREEN",
+    "priority_score": 180
+  },
+  {
+    "id": "item-103",
+    "name": "Pastries, danish",
+    "ingredient_lookup": "pastries, danish",
+    "category": "Ekmek & Unlu Mamuller",
+    "quantity": 500,
+    "unit": "gram",
+    "expiration_date": "2026-10-21",
+    "days_remaining": 15,
+    "status": "GREEN",
+    "priority_score": 15
+  },
+  {
+    "id": "item-104",
+    "name": "Cream pies",
+    "ingredient_lookup": "cream pies",
+    "category": "Ekmek & Unlu Mamuller",
+    "quantity": 1000,
+    "unit": "ml",
+    "expiration_date": "2026-10-22",
+    "days_remaining": 16,
+    "status": "GREEN",
+    "priority_score": 16
+  },
+  {
+    "id": "item-105",
+    "name": "Chiffon pies",
+    "ingredient_lookup": "chiffon pies",
+    "category": "Ekmek & Unlu Mamuller",
+    "quantity": 500,
+    "unit": "gram",
+    "expiration_date": "2026-10-23",
+    "days_remaining": 17,
+    "status": "GREEN",
+    "priority_score": 17
   }
 ]
