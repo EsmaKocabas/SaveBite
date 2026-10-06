@@ -1,21 +1,12 @@
 /**
- * ==============================================================================
- * 🌱 ESM-02: SKT Dinamik Risk ve Öncelik Hesaplama Modülü
- *    Gıda İsrafı ile Mücadele ve Akıllı Kiler Yönetim Sistemi
- *    BM SKA 12.3: Evsel Gıda İsrafını Önleme İlkelerine Göre Düzenlenmiştir.
- * ==============================================================================
+ * Kalan gün sayısına göre ürünün risk durumunu (RED, YELLOW, GREEN) hesaplar.
  * 
- * Bu modül, kilerdeki ürünlerin son tüketim tarihlerini (SKT) anlık olarak analiz eder,
- * kalan gün sayısına göre bozulma risk seviyesini (RED, YELLOW, GREEN) ve
- * kullanıcı dostu Türkçe durum etiketini hesaplar.
+ * - RED    : <= 2 gün (Acil tüketim)
+ * - YELLOW : 3-6 gün  (Haftalık planlama)
+ * - GREEN  : >= 7 gün (Güvenli)
  * 
- * Risk Seviyeleri:
- * - RED    (Kırmızı) : Kalan gün <= 2 (Acil Tüketim / Sıfır Atık Müdahalesi)
- * - YELLOW (Sarı)    : Kalan gün 3-6 (Haftalık Tüketim Planlaması)
- * - GREEN  (Yeşil)   : Kalan gün >= 7 (Güvenli Saklama Durumu)
- * 
- * @param {string | Date} expirationDate - Ürünün son kullanma tarihi (YYYY-MM-DD veya Date)
- * @returns {Object} { daysRemaining, status, priorityScore, labelTr }
+ * @param {string | Date} expirationDate - Ürünün son kullanma tarihi
+ * @returns {{ daysRemaining: number, status: string, priorityScore: number, labelTr: string }}
  */
 function calculateExpirationStatus(expirationDate) {
   const today = new Date();
@@ -40,8 +31,8 @@ function calculateExpirationStatus(expirationDate) {
 
   return {
     daysRemaining,
-    status, // "RED" | "YELLOW" | "GREEN"
-    priorityScore: daysRemaining, // Artan sıralama: düşük gün sayısı en tepede
+    status,
+    priorityScore: daysRemaining,
     labelTr
   };
 }

@@ -1,22 +1,5 @@
 """
-================================================================================
-🌱 GIDA İSRAFI İLE MÜCADELE VE AKILLI KİLER YÖNETİM SİSTEMİ
-   Sosyal Sorumluluk Projesi - Otomasyon ve Veri Hazırlama Boru Hattı
-
-   Misyon:
-   Birleşmiş Milletler Sürdürülebilir Kalkınma Amaçları (SKA 12.3: Gıda İsrafının
-   Yarıya İndirilmesi) doğrultusunda; evsel gıdaların raf ömürlerini takip etmek,
-   bozulma riski yüksek gıdaları önceliklendirmek ve sıfır atık prensibiyle
-   bu gıdaların değerlendirilebileceği uygun yemek tariflerini eşleştirmek.
-
-   Veri Kaynakları:
-   1. USDA FoodKeeper & Saklama Kılavuzu: Gıda kategorileri ve raf ömrü parametreleri
-   2. Food.com Veri Seti: 230,000+ tarif arasından acil kiler gıdalarıyla eşleşen tarifler
-
-   Üretilen Çıktılar:
-   - pantry_seed.json  : Kiler takip sistemi için 100 adet SKT ve risk puanlı gıda
-   - recipes_seed.json : İsrafı önlemeye yönelik 100 adet kurtarma odaklı gerçek tarif
-================================================================================
+Kaggle Food.com ve USDA FoodKeeper veri seti hazırlama boru hattı.
 """
 
 import os
@@ -28,18 +11,13 @@ import warnings
 from datetime import datetime, timedelta
 import pandas as pd
 
-# Harici kütüphane uyarılarını temizle (konsol estetiği için)
 warnings.filterwarnings("ignore")
 
-# Windows Türkçe konsollarda (cp1254) Unicode ve Türkçe karakter desteği
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
-# ==============================================================================
-# 1. DİZİN YAPILANDIRMASI VE ORTAM DEĞİŞKENLERİ (.ENV)
-# ==============================================================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
 DOWNLOAD_DIR = os.path.join(BASE_DIR, "raw_kaggle")
@@ -47,7 +25,7 @@ os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 
 def load_project_environment():
-    """Proje kök dizinindeki .env dosyasını okuyarak Kaggle kimlik bilgilerini yükler."""
+    """Proje kök dizinindeki .env dosyasından Kaggle kimlik bilgilerini yükler."""
     env_path = os.path.join(PROJECT_ROOT, ".env")
     if os.path.exists(env_path):
         with open(env_path, "r", encoding="utf-8") as f:
@@ -74,9 +52,6 @@ def load_project_environment():
             pass
 
 
-# ==============================================================================
-# 2. KAGGLE API KİMLİK DOĞRULAMA (AÇIK VERİ ERİŞİMİ)
-# ==============================================================================
 def authenticate_kaggle_api():
     """Kaggle API bağlantısını doğrular."""
     load_project_environment()
@@ -90,48 +65,45 @@ def authenticate_kaggle_api():
     has_file = os.path.exists(kaggle_json) or os.path.exists(access_token)
 
     if not (has_token or has_user_key or has_file):
-        print("⚠️ Kaggle kimlik bilgisi bulunamadı, mevcut yerel dosyalar kullanılacak.")
+        print("Kaggle kimlik bilgisi bulunamadı, yerel dosyalar kullanılacak.")
         return None
 
     try:
         from kaggle.api.kaggle_api_extended import KaggleApi
         api = KaggleApi()
         api.authenticate()
-        print("✅ Kaggle API kimlik doğrulaması başarılı.")
+        print("Kaggle API doğrulaması başarılı.")
         return api
     except Exception as e:
-        print(f"⚠️ Kaggle API bağlanırken uyarı ({e}), yerel dosyalar kullanılacak.")
+        print(f"Kaggle API uyarısı ({e}), yerel dosyalar kullanılacak.")
         return None
 
 
-# ==============================================================================
-# 3. VERİ İNDİRME VE ARŞİV ÇIKARMA
-# ==============================================================================
 def extract_all_archives(target_dir):
-    """İndirilen veri seti zip arşivlerini ayıklar."""
+    """Zip arşivlerini belirtilen dizine ayıklar."""
     for item in os.listdir(target_dir):
         if item.endswith(".zip"):
             zip_path = os.path.join(target_dir, item)
-            print(f"📦 Arşiv paketi açılıyor: {item}...")
+            print(f"Arşiv paketi açılıyor: {item}")
             with zipfile.ZipFile(zip_path, "r") as zip_ref:
                 zip_ref.extractall(target_dir)
 
 
 def download_datasets(api):
-    """Gerektiğinde Kaggle üzerinden veri setlerini indirir."""
+    """Eksik veri setlerini Kaggle üzerinden indirir."""
     recipes_csv = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv")
     recipes_zip = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv.zip")
 
     if not os.path.exists(recipes_csv) and not os.path.exists(recipes_zip):
         if api:
-            print("\n📥 Food.com Gerçek Yemek Tarifleri İndiriliyor (shuyangli94)...")
+            print("Food.com veri seti indiriliyor...")
             api.dataset_download_file(
                 dataset="shuyangli94/food-com-recipes-and-user-interactions",
                 file_name="RAW_recipes.csv",
                 path=DOWNLOAD_DIR,
             )
     else:
-        print("   -> Food.com veri paketi mevcut, indirme adımı atlandı.")
+        print("Food.com veri seti mevcut.")
 
     fk_json = os.path.join(DOWNLOAD_DIR, "foodkeeper.json")
     if not os.path.exists(fk_json) and api:
@@ -147,24 +119,9 @@ def download_datasets(api):
     extract_all_archives(DOWNLOAD_DIR)
 
 
-# ==============================================================================
-# 4. SOSYAL SORUMLULUK GIDA KATALOĞU VE RAF ÖMRÜ (100 ADET KİLER ÜRÜNÜ)
-# ==============================================================================
 def build_social_pantry_catalog(today):
-    """
-    Evsel mutfaklarda en sık israf edilen temel gıdaları ve USDA FoodKeeper
-    raf ömrü standartlarını baz alarak 100 adetlik kiler veri modelini (pantry_seed) üretir.
-
-    İsraf Risk Sınıflandırması:
-    - RED (KIRMIZI - Yüksek Risk)  : Kalan gün <= 2 (Acil tüketime yönlendirilmeli)
-    - YELLOW (SARI - Orta Risk)    : Kalan gün 3-6 (Haftalık menüde önceliklendirilmeli)
-    - GREEN (YEŞİL - Düşük Risk)   : Kalan gün >= 7 (Kilerde güvenli saklama durumu)
-    """
-    print("\n📊 Gıda İsrafını Önleme: 100 Adet Kiler Ürünü Raf Ömrü ve Risk Puanlaması Hesaplanıyor...")
-
-    # 100 adet gerçekçi evsel gıda kataloğu
+    """Temel gıdaları ve raf ömürlerini baz alan kiler modelini üretir."""
     core_items = [
-        # --- 1-25: ACİL VE YÜKSEK RİSKLİ TAZE GIDALAR (RED & EARLY YELLOW) ---
         {"name": "Tavuk Göğsü", "eng": "chicken breast", "category": "Et, Tavuk & Balık", "days": 1, "unit": "gram", "qty": 500},
         {"name": "Somon Fileto", "eng": "salmon", "category": "Et, Tavuk & Balık", "days": 1, "unit": "gram", "qty": 400},
         {"name": "Karides", "eng": "shrimp", "category": "Et, Tavuk & Balık", "days": 1, "unit": "gram", "qty": 300},
@@ -190,8 +147,6 @@ def build_social_pantry_catalog(today):
         {"name": "Maydanoz", "eng": "parsley", "category": "Sebze & Meyve", "days": 3, "unit": "demet", "qty": 2},
         {"name": "Dereotu", "eng": "dill", "category": "Sebze & Meyve", "days": 3, "unit": "demet", "qty": 1},
         {"name": "Taze Bezelye", "eng": "peas", "category": "Sebze & Meyve", "days": 3, "unit": "gram", "qty": 400},
-
-        # --- 26-55: YAKLAŞAN RİSK GRUBU (YELLOW: 4-6 GÜN) ---
         {"name": "Kaşar Peyniri", "eng": "cheese", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 300},
         {"name": "Mozzarella Peyniri", "eng": "mozzarella", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 250},
         {"name": "Kabak", "eng": "zucchini", "category": "Sebze & Meyve", "days": 4, "unit": "adet", "qty": 4},
@@ -222,8 +177,6 @@ def build_social_pantry_catalog(today):
         {"name": "Pancar", "eng": "beet", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 3},
         {"name": "Balkabağı", "eng": "pumpkin", "category": "Sebze & Meyve", "days": 6, "unit": "dilim", "qty": 2},
         {"name": "Taze Biberiye", "eng": "rosemary", "category": "Sebze & Meyve", "days": 6, "unit": "demet", "qty": 1},
-
-        # --- 56-100: GÜVENLİ VE UZUN RAF ÖMÜRLÜ KİLER ERZAĞI (GREEN: >= 7 GÜN) ---
         {"name": "Lavaş Ekmeği", "eng": "tortilla", "category": "Ekmek & Unlu Mamuller", "days": 7, "unit": "paket", "qty": 2},
         {"name": "Tereyağı", "eng": "butter", "category": "Süt & Süt Ürünleri", "days": 10, "unit": "gram", "qty": 250},
         {"name": "Havuç", "eng": "carrot", "category": "Sebze & Meyve", "days": 12, "unit": "adet", "qty": 6},
@@ -280,7 +233,6 @@ def build_social_pantry_catalog(today):
     for idx, item in enumerate(core_items):
         exp_date = today + timedelta(days=item["days"])
 
-        # SKT ve İsraf Riski Durum Belirleme
         if item["days"] <= 2:
             status = "RED"
         elif item["days"] <= 6:
@@ -298,33 +250,20 @@ def build_social_pantry_catalog(today):
             "expiration_date": exp_date.strftime("%Y-%m-%d"),
             "days_remaining": item["days"],
             "status": status,
-            "priority_score": item["days"],  # Düşük skor = Yüksek israf riski ve öncelik
+            "priority_score": item["days"],
         })
 
     return pantry_seed
 
 
-# ==============================================================================
-# 5. SIFIR ATIK TARİF EŞLEŞTİRME MOTORU (100 ADET GERÇEK KAGGLE TARİFİ)
-# ==============================================================================
 def match_rescue_recipes(pantry_seed, target_count=100):
-    """
-    Food.com yemek tarifleri veri setini tarar.
-    Kilerde bozulmak üzere olan (RED & YELLOW etiketli) acil malzemelerden
-    en az 2 tanesini içeren 100 adet kurtarma tarifini filtreleyip hazırlar.
-    """
+    """Food.com veri setini tarayarak eşleşen kurtarma tariflerini filtreler."""
     recipes_csv = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv")
     if not os.path.exists(recipes_csv):
         raise FileNotFoundError(f"Tarif veri seti bulunamadı: {recipes_csv}")
 
-    print(f"\n🍳 Sıfır Atık Tarif Motoru: Kaggle Food.com taranıyor (Hedef: {target_count} Tarif)...")
-
-    # Acil tüketilmesi gereken gıdalar (RED ve YELLOW grubundaki malzemeler)
     urgent_pantry_items = [item for item in pantry_seed if item["status"] in ["RED", "YELLOW"]]
     target_ingredients = list(set([item["ingredient_lookup"] for item in urgent_pantry_items]))
-
-    print(f"   -> {len(target_ingredients)} adet kurtarılacak acil malzeme baz alınıyor...")
-    print(f"   -> Gerçek Food.com veri seti taranıyor (230,000+ tarif)...")
 
     chunk_size = 10000
     extracted_recipes = []
@@ -337,11 +276,8 @@ def match_rescue_recipes(pantry_seed, target_count=100):
                 continue
 
             raw_ingredients_text = str(row.get("ingredients", "")).lower()
-
-            # Tarifin içerdiği acil kiler malzemelerini bul
             matched_ings = [ing for ing in target_ingredients if ing in raw_ingredients_text]
 
-            # Sosyal Sorumluluk Kuralı: En az 2 acil kiler malzemesini kurtaran tarifleri seç
             if len(matched_ings) >= 2:
                 raw_steps = row.get("steps", "")
                 try:
@@ -371,34 +307,17 @@ def match_rescue_recipes(pantry_seed, target_count=100):
         if len(extracted_recipes) >= target_count:
             break
 
-    print(f"   ✅ Toplam {len(extracted_recipes)} adet gerçek kurtarma tarifi Kaggle'dan başarıyla çıkarıldı.")
     return extracted_recipes
 
 
-# ==============================================================================
-# 6. ANA İŞLEYİŞ VE VERİTABANI TOHUMLAMA (SEED) ÇIKTILARI
-# ==============================================================================
 def main():
-    print("=" * 80)
-    print("🌱 GIDA İSRAFI İLE MÜCADELE VE SÜRDÜRÜLEBİLİRLİK PROJESİ")
-    print("   Akıllı Kiler ve Sıfır Atık Yemek Tarifi Eşleştirme Motoru (100x100)")
-    print("   Birleşmiş Milletler SKA 12.3: Evsel Gıda İsrafını Önleme Girişimi")
-    print("=" * 80)
-
-    # Adım 1: Kaggle API kontrolü
     api = authenticate_kaggle_api()
-
-    # Adım 2: Veri setlerini kontrol et
     download_datasets(api)
 
-    # Adım 3: 100 Adet Kiler ve SKT modeli (Referans Tarih: 6 Ekim 2026)
     today = datetime(2026, 10, 6)
     pantry_seed = build_social_pantry_catalog(today)
-
-    # Adım 4: 100 Adet Sıfır atık tarif eşleştirme algoritmasını çalıştır
     recipes_seed = match_rescue_recipes(pantry_seed, target_count=100)
 
-    # Adım 5: JSON dosyalarını oluştur
     pantry_json_path = os.path.join(BASE_DIR, "pantry_seed.json")
     recipes_json_path = os.path.join(BASE_DIR, "recipes_seed.json")
 
@@ -408,20 +327,8 @@ def main():
     with open(recipes_json_path, "w", encoding="utf-8") as f:
         json.dump(recipes_seed, f, ensure_ascii=False, indent=2)
 
-    # Konsol Bilgilendirme Raporu
-    print("\n" + "=" * 80)
-    print("🎉 SOSYAL SORUMLULUK VERİ HAZIRLAMA İŞLEMİ TAMAMLANDI!")
-    print(f"📁 Kiler Tohum Verisi : src/data/pantry_seed.json ({len(pantry_seed)} ürün, SKT ve risk etiketli)")
-    print(f"📁 Tarif Tohum Verisi : src/data/recipes_seed.json ({len(recipes_seed)} kurtarma odaklı tarif)")
-    print("-" * 80)
-    print("📌 Kiler Risk Dağılımı:")
-    red_count = sum(1 for item in pantry_seed if item["status"] == "RED")
-    yellow_count = sum(1 for item in pantry_seed if item["status"] == "YELLOW")
-    green_count = sum(1 for item in pantry_seed if item["status"] == "GREEN")
-    print(f"   🔴 Kırmızı (Acil Tüketim / 0-2 Gün): {red_count} ürün")
-    print(f"   🟡 Sarı (Yaklaşan Risk / 3-6 Gün)   : {yellow_count} ürün")
-    print(f"   🟢 Yeşil (Güvenli Kiler)            : {green_count} ürün")
-    print("=" * 80 + "\n")
+    print(f"Kiler tohum verisi hazır: {len(pantry_seed)} ürün.")
+    print(f"Tarif tohum verisi hazır: {len(recipes_seed)} tarif.")
 
 
 if __name__ == "__main__":

@@ -1,35 +1,20 @@
 /**
- * ==============================================================================
- * 🌱 Sıfır Atık Gıda Kurtarma & Tarif Eşleştirme Algoritması
- *    Gıda İsrafı ile Mücadele ve Akıllı Kiler Yönetim Sistemi
- *    BM SKA 12.3: Bozulma riski yüksek gıdaları önceliklendirerek israfı önler.
- * ==============================================================================
- * 
- * Bu algoritma, evsel kiler envanterinde yer alan ve son tüketim tarihi yaklaşan
- * gıdaların bozulma risklerini (RED, YELLOW, GREEN) analiz ederek, yemek tarifleri
- * havuzundaki en uygun "Gıda Kurtarma" tariflerini puanlar ve önceliklendirir.
- */
-
-/**
- * Puanlama Ağırlıkları
- * Kırmızı etiketli acil bir gıdayı kurtarmak en yüksek önceliğe sahiptir.
+ * Risk durumuna göre kurtarma puanı ağırlıkları.
  */
 const SCORE_WEIGHTS = {
-  RED: 50,      // Acil Tüketim (0-2 gün) -> Yüksek Kurtarma Değeri
-  YELLOW: 20,   // Haftalık Risk (3-6 gün) -> Orta Kurtarma Değeri
-  GREEN: 5      // Güvenli Kiler (7+ gün)  -> Düşük Kurtarma Değeri
+  RED: 50,
+  YELLOW: 20,
+  GREEN: 5
 };
 
 /**
- * Kiler envanterindeki riskli gıdalarla tarifleri eşleştirip kurtarma puanına göre sıralar.
+ * Kilerdeki malzemeler ile tarifleri eşleştirip kurtarma puanına göre sıralar.
  * 
- * @param {Array} pantryItems - Kilerdeki gıdaların listesi (status, ingredient_lookup içeren nesneler)
- * @param {Array} recipes - Tarif veri tabanı (matched_ingredients veya ingredients dizisi içeren tarifler)
- * @returns {Array} Puanlanmış, kurtarılan malzeme detayları eklenmiş ve azalan puana göre sıralı tarifler
+ * @param {Array} pantryItems - Kiler ürünleri listesi
+ * @param {Array} recipes - Tarif listesi
+ * @returns {Array} Puanlanmış ve sıralanmış tarifler
  */
 function matchAndRankRecipes(pantryItems, recipes) {
-  // 1. Kilerdeki malzemeleri hızlı erişim için haritaya (Map) alalım
-  // ingredient_lookup küçük harfe dönüştürülerek normalize edilir
   const pantryMap = new Map();
   pantryItems.forEach(item => {
     const key = (item.ingredient_lookup || item.name).toLowerCase().trim();
@@ -40,19 +25,16 @@ function matchAndRankRecipes(pantryItems, recipes) {
     });
   });
 
-  // 2. Her tarif için kurtarma analizi yap
   const scoredRecipes = recipes.map(recipe => {
     let rescueScore = 0;
     const rescuedItems = [];
     const missingIngredients = [];
 
-    // Tarifin malzeme listesini normalize et
     const ingredients = recipe.matched_ingredients || recipe.ingredients || [];
 
     ingredients.forEach(rawIng => {
       const ingLower = rawIng.toLowerCase().trim();
       
-      // Kilerde bu malzeme var mı kontrol et (kısmi eşleşme desteğiyle)
       let matchedPantryItem = null;
       for (const [pantryKey, pantryVal] of pantryMap.entries()) {
         if (ingLower.includes(pantryKey) || pantryKey.includes(ingLower)) {
@@ -75,13 +57,12 @@ function matchAndRankRecipes(pantryItems, recipes) {
       }
     });
 
-    // Kurtarılan kırmızı ve sarı malzeme sayıları
     const redCount = rescuedItems.filter(i => i.status === 'RED').length;
     const yellowCount = rescuedItems.filter(i => i.status === 'YELLOW').length;
 
-    // Bonus: Eğer bir tarif aynı anda birden fazla acil (RED) gıdayı kurtarıyorsa ekstra çarpan
+    // Birden fazla acil malzeme varsa ekstra puan
     if (redCount >= 2) {
-      rescueScore += 30; // Çift Acil Kurtarma Bonusu
+      rescueScore += 30;
     }
 
     return {
@@ -98,7 +79,6 @@ function matchAndRankRecipes(pantryItems, recipes) {
     };
   });
 
-  // 3. Sadece en az 1 malzeme kurtaranları al ve rescueScore'a göre azalan (en yüksek puan en üstte) sırala
   return scoredRecipes
     .filter(r => r.totalRescuedCount > 0)
     .sort((a, b) => b.rescueScore - a.rescueScore);

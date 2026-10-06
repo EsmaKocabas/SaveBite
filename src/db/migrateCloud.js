@@ -4,28 +4,27 @@ require('dotenv').config();
 
 const { Client } = require('pg');
 
-// Kaggle veri setinden üretilen 100+ kiler ve 100 gerçek tarif verisi
 const pantrySeed = require('../data/pantry_seed.json');
 const recipesSeed = require('../data/recipes_seed.json');
 
 const defaultCategories = [
-  { name: 'Et, Tavuk & Balık', description: 'Çabuk bozulabilen yüksek proteinli et ve tavuk ürünleri' },
-  { name: 'Süt & Süt Ürünleri', description: 'Kısa raf ömrüne sahip pastörize ve fermente süt ürünleri' },
-  { name: 'Sebze & Meyve', description: 'Taze tüketilmesi gereken vitamin ve mineral kaynağı bahçe ürünleri' },
-  { name: 'Kahvaltılık & Şarküteri', description: 'Yumurta, peynir ve şarküteri grubu ürünleri' },
-  { name: 'Bakliyat & Kuru Gıda', description: 'Uzun raf ömürlü temel kiler erzağı' },
-  { name: 'Ekmek & Unlu Mamuller', description: 'Ekmek, un, yufka ve lavaş çeşitleri' },
-  { name: 'Sos & Baharat', description: 'Yemek yapımında kullanılan soslar, sıvı yağlar ve baharatlar' },
-  { name: 'Kuru Yemiş & Atıştırmalık', description: 'Ceviz, badem, fındık ve kurutulmuş meyveler' },
-  { name: 'Konserve & Hazır Gıda', description: 'Konserve bakliyat, ton balığı ve hazır gıdalar' },
-  { name: 'Temel Gıda', description: 'Un, şeker ve mutfak temel ihtiyaçları' }
+  { name: 'Et, Tavuk & Balık', description: 'Et ve tavuk ürünleri' },
+  { name: 'Süt & Süt Ürünleri', description: 'Süt ve süt ürünleri' },
+  { name: 'Sebze & Meyve', description: 'Meyve ve sebzeler' },
+  { name: 'Kahvaltılık & Şarküteri', description: 'Kahvaltılık ve şarküteri ürünleri' },
+  { name: 'Bakliyat & Kuru Gıda', description: 'Bakliyat ve kuru gıda' },
+  { name: 'Ekmek & Unlu Mamuller', description: 'Ekmek ve unlu mamuller' },
+  { name: 'Sos & Baharat', description: 'Soslar, sıvı yağlar ve baharatlar' },
+  { name: 'Kuru Yemiş & Atıştırmalık', description: 'Kuru yemiş ve kuru meyveler' },
+  { name: 'Konserve & Hazır Gıda', description: 'Konserve ve hazır gıdalar' },
+  { name: 'Temel Gıda', description: 'Mutfak temel gıdaları' }
 ];
 
 async function migrateToNeon() {
   const connectionString = process.env.DATABASE_URL;
 
   if (!connectionString) {
-    console.error("❌ Hata: .env dosyasında DATABASE_URL bulunamadı!");
+    console.error("Hata: .env dosyasında DATABASE_URL bulunamadı.");
     process.exit(1);
   }
 
@@ -35,13 +34,11 @@ async function migrateToNeon() {
   });
 
   try {
-    console.log("☁️ Neon.tech Cloud PostgreSQL sunucusuna bağlanılıyor...");
+    console.log("Veritabanına bağlanılıyor...");
     await client.connect();
-    console.log("✅ Bulut bağlantısı kuruldu!\n");
+    console.log("Bağlantı sağlandı.");
 
-    // 1. Tabloları Otomatik Oluştur
-    console.log("🛠️ 1/4 - Veritabanı tabloları ve indeksleri otomatik oluşturuluyor...");
-    
+    // Tabloları ve indeksleri oluştur
     await client.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -87,13 +84,11 @@ async function migrateToNeon() {
       CREATE INDEX IF NOT EXISTS idx_recipes_ingredients ON recipes USING GIN (matched_ingredients);
       CREATE INDEX IF NOT EXISTS idx_recipes_instructions ON recipes USING GIN (instructions);
     `);
-    console.log("   ✅ Tablolar ve indeksler hazır.");
+    console.log("Tablolar ve indeksler doğrulandı.");
 
-    // Transaction başlatıyoruz
     await client.query('BEGIN');
 
-    // 2. Kategorileri Otomatik Yükle
-    console.log("🌱 2/4 - Temel gıda kategorileri yükleniyor...");
+    // Kategorileri ekle
     for (const cat of defaultCategories) {
       await client.query(
         `INSERT INTO categories (name, description) 
@@ -102,10 +97,9 @@ async function migrateToNeon() {
         [cat.name, cat.description]
       );
     }
-    console.log(`   ✅ ${defaultCategories.length} kategori hazır.`);
+    console.log(`${defaultCategories.length} kategori kaydedildi.`);
 
-    // 3. Kiler Ürünlerini JSON'dan Neon'a Aktar
-    console.log(`📦 3/4 - ${pantrySeed.length} Adet kiler verisi Kaggle JSON'dan buluta aktarılıyor...`);
+    // Kiler ürünlerini ekle
     for (const item of pantrySeed) {
       await client.query(`
         INSERT INTO pantry_items (
@@ -136,10 +130,9 @@ async function migrateToNeon() {
         item.priority_score
       ]);
     }
-    console.log(`   ✅ ${pantrySeed.length} kiler ürünü Neon'a aktarıldı.`);
+    console.log(`${pantrySeed.length} kiler ürünü kaydedildi.`);
 
-    // 4. Kurtarma Tariflerini JSON'dan Neon'a Aktar
-    console.log(`🍳 4/4 - ${recipesSeed.length} Adet gerçek Kaggle kurtarma tarifi buluta aktarılıyor...`);
+    // Kurtarma tariflerini ekle
     for (const r of recipesSeed) {
       await client.query(`
         INSERT INTO recipes (recipe_id, title, prep_time_minutes, matched_ingredients, instructions)
@@ -157,31 +150,22 @@ async function migrateToNeon() {
         JSON.stringify(r.instructions)
       ]);
     }
-    console.log(`   ✅ ${recipesSeed.length} kurtarma tarifi Neon'a aktarıldı.`);
+    console.log(`${recipesSeed.length} kurtarma tarifi kaydedildi.`);
 
     await client.query('COMMIT');
 
-    // 5. Doğrulama ve İstatistik
     const pantryCount = await client.query('SELECT COUNT(*) FROM pantry_items;');
     const recipeCount = await client.query('SELECT COUNT(*) FROM recipes;');
     const categoryCount = await client.query('SELECT COUNT(*) FROM categories;');
-    const redCount = await client.query("SELECT COUNT(*) FROM pantry_items WHERE status = 'RED';");
-    const yellowCount = await client.query("SELECT COUNT(*) FROM pantry_items WHERE status = 'YELLOW';");
-    const greenCount = await client.query("SELECT COUNT(*) FROM pantry_items WHERE status = 'GREEN';");
 
-    console.log("\n========================================================");
-    console.log("🚀 BULUT VERİTABANI BAŞARIYLA GÜNCELLENDİ (100x100 VERİ)!");
-    console.log(`🏷️ Toplam Kategori      : ${categoryCount.rows[0].count}`);
-    console.log(`📦 Toplam Kiler Ürünü   : ${pantryCount.rows[0].count}`);
-    console.log(`   🔴 Acil Tüketim (RED): ${redCount.rows[0].count}`);
-    console.log(`   🟡 Riskli (YELLOW)   : ${yellowCount.rows[0].count}`);
-    console.log(`   🟢 Güvenli (GREEN)   : ${greenCount.rows[0].count}`);
-    console.log(`🍳 Kurtarma Tarifleri   : ${recipeCount.rows[0].count}`);
-    console.log("========================================================\n");
+    console.log("\nAktarım tamamlandı:");
+    console.log(`- Kategori sayısı: ${categoryCount.rows[0].count}`);
+    console.log(`- Kiler ürünü sayısı: ${pantryCount.rows[0].count}`);
+    console.log(`- Tarif sayısı: ${recipeCount.rows[0].count}\n`);
 
   } catch (err) {
     await client.query('ROLLBACK').catch(() => {});
-    console.error("❌ Aktarım sırasında hata oluştu:", err.message);
+    console.error("Aktarım hatası:", err.message);
     process.exit(1);
   } finally {
     await client.end();
