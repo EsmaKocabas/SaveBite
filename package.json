@@ -1,5 +1,5 @@
 {
-  "name": "savebite-food-waste-prevention",
+  "name": "save-bite",
   "version": "1.0.0",
   "description": "Gıda İsrafı ile Mücadele ve Sürdürülebilirlik Platformu",
   "main": "src/db/migrateCloud.js",
