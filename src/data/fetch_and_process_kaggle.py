@@ -1,5 +1,7 @@
 """
-Kaggle Food.com ve USDA FoodKeeper veri seti hazırlama boru hattı.
+Kaggle Food.com ve USDA FoodKeeper veri setlerinden dinamik veri işleme boru hattı.
+Tüm kiler ve tarif verileri doğrudan Kaggle'dan indirilen veri setlerinden okunur.
+Kod içerisinde hiçbir statik ürün veya tarif verisi tutulmaz.
 """
 
 import os
@@ -65,7 +67,7 @@ def authenticate_kaggle_api():
     has_file = os.path.exists(kaggle_json) or os.path.exists(access_token)
 
     if not (has_token or has_user_key or has_file):
-        print("Kaggle kimlik bilgisi bulunamadı, yerel dosyalar kullanılacak.")
+        print("Kaggle kimlik bilgisi bulunamadı, mevcut yerel dosyalar kullanılacak.")
         return None
 
     try:
@@ -90,13 +92,13 @@ def extract_all_archives(target_dir):
 
 
 def download_datasets(api):
-    """Eksik veri setlerini Kaggle üzerinden indirir."""
+    """Eksik veri setlerini Kaggle üzerinden otomatik olarak temin eder."""
     recipes_csv = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv")
     recipes_zip = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv.zip")
 
     if not os.path.exists(recipes_csv) and not os.path.exists(recipes_zip):
         if api:
-            print("Food.com veri seti indiriliyor...")
+            print("Food.com veri seti Kaggle'dan indiriliyor...")
             api.dataset_download_file(
                 dataset="shuyangli94/food-com-recipes-and-user-interactions",
                 file_name="RAW_recipes.csv",
@@ -108,6 +110,7 @@ def download_datasets(api):
     fk_json = os.path.join(DOWNLOAD_DIR, "foodkeeper.json")
     if not os.path.exists(fk_json) and api:
         try:
+            print("USDA FoodKeeper veri seti Kaggle'dan indiriliyor...")
             api.dataset_download_file(
                 dataset="parvezthabarak/foodkeeper",
                 file_name="foodkeeper.json",
@@ -119,145 +122,167 @@ def download_datasets(api):
     extract_all_archives(DOWNLOAD_DIR)
 
 
-def build_social_pantry_catalog(today):
-    """Temel gıdaları ve raf ömürlerini baz alan kiler modelini üretir."""
-    core_items = [
-        {"name": "Tavuk Göğsü", "eng": "chicken breast", "category": "Et, Tavuk & Balık", "days": 1, "unit": "gram", "qty": 500},
-        {"name": "Somon Fileto", "eng": "salmon", "category": "Et, Tavuk & Balık", "days": 1, "unit": "gram", "qty": 400},
-        {"name": "Karides", "eng": "shrimp", "category": "Et, Tavuk & Balık", "days": 1, "unit": "gram", "qty": 300},
-        {"name": "Taze Mantar", "eng": "mushroom", "category": "Sebze & Meyve", "days": 2, "unit": "gram", "qty": 300},
-        {"name": "Taze Ispanak", "eng": "spinach", "category": "Sebze & Meyve", "days": 2, "unit": "gram", "qty": 400},
-        {"name": "Dana Biftek", "eng": "steak", "category": "Et, Tavuk & Balık", "days": 2, "unit": "gram", "qty": 600},
-        {"name": "Çilek", "eng": "strawberries", "category": "Sebze & Meyve", "days": 2, "unit": "gram", "qty": 250},
-        {"name": "Taze Roka", "eng": "arugula", "category": "Sebze & Meyve", "days": 2, "unit": "demet", "qty": 2},
-        {"name": "Kuşkonmaz", "eng": "asparagus", "category": "Sebze & Meyve", "days": 2, "unit": "gram", "qty": 250},
-        {"name": "Hindi Göğsü", "eng": "turkey", "category": "Et, Tavuk & Balık", "days": 2, "unit": "gram", "qty": 500},
-        {"name": "Avokado", "eng": "avocado", "category": "Sebze & Meyve", "days": 2, "unit": "adet", "qty": 3},
-        {"name": "Ekmek", "eng": "bread", "category": "Ekmek & Unlu Mamuller", "days": 2, "unit": "adet", "qty": 2},
-        {"name": "Krema", "eng": "cream", "category": "Süt & Süt Ürünleri", "days": 2, "unit": "ml", "qty": 200},
-        {"name": "Taze Marul", "eng": "lettuce", "category": "Sebze & Meyve", "days": 2, "unit": "adet", "qty": 1},
-        {"name": "Süt", "eng": "milk", "category": "Süt & Süt Ürünleri", "days": 3, "unit": "ml", "qty": 1000},
-        {"name": "Kıyma", "eng": "ground beef", "category": "Et, Tavuk & Balık", "days": 3, "unit": "gram", "qty": 500},
-        {"name": "Yoğurt", "eng": "yogurt", "category": "Süt & Süt Ürünleri", "days": 3, "unit": "gram", "qty": 1000},
-        {"name": "Muz", "eng": "banana", "category": "Sebze & Meyve", "days": 3, "unit": "adet", "qty": 6},
-        {"name": "Taze Fasulye", "eng": "green beans", "category": "Sebze & Meyve", "days": 3, "unit": "gram", "qty": 500},
-        {"name": "Brokoli", "eng": "broccoli", "category": "Sebze & Meyve", "days": 3, "unit": "gram", "qty": 400},
-        {"name": "Sosis", "eng": "sausage", "category": "Et, Tavuk & Balık", "days": 3, "unit": "gram", "qty": 300},
-        {"name": "Taze Fesleğen", "eng": "basil", "category": "Sebze & Meyve", "days": 3, "unit": "demet", "qty": 1},
-        {"name": "Maydanoz", "eng": "parsley", "category": "Sebze & Meyve", "days": 3, "unit": "demet", "qty": 2},
-        {"name": "Dereotu", "eng": "dill", "category": "Sebze & Meyve", "days": 3, "unit": "demet", "qty": 1},
-        {"name": "Taze Bezelye", "eng": "peas", "category": "Sebze & Meyve", "days": 3, "unit": "gram", "qty": 400},
-        {"name": "Kaşar Peyniri", "eng": "cheese", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 300},
-        {"name": "Mozzarella Peyniri", "eng": "mozzarella", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 250},
-        {"name": "Kabak", "eng": "zucchini", "category": "Sebze & Meyve", "days": 4, "unit": "adet", "qty": 4},
-        {"name": "Patlıcan", "eng": "eggplant", "category": "Sebze & Meyve", "days": 4, "unit": "adet", "qty": 3},
-        {"name": "Karnabahar", "eng": "cauliflower", "category": "Sebze & Meyve", "days": 4, "unit": "adet", "qty": 1},
-        {"name": "Salatalık", "eng": "cucumber", "category": "Sebze & Meyve", "days": 4, "unit": "adet", "qty": 5},
-        {"name": "Labne Peyniri", "eng": "cream cheese", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 200},
-        {"name": "Taze Soğan", "eng": "green onions", "category": "Sebze & Meyve", "days": 4, "unit": "demet", "qty": 2},
-        {"name": "Enginar", "eng": "artichoke", "category": "Sebze & Meyve", "days": 4, "unit": "adet", "qty": 3},
-        {"name": "Ricotta Peyniri", "eng": "ricotta", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 250},
-        {"name": "Lor Peyniri", "eng": "cottage cheese", "category": "Süt & Süt Ürünleri", "days": 4, "unit": "gram", "qty": 300},
-        {"name": "Biber (Dolmalık & Çarliston)", "eng": "bell pepper", "category": "Sebze & Meyve", "days": 5, "unit": "adet", "qty": 6},
-        {"name": "Kangal Sucuk", "eng": "sausage", "category": "Kahvaltılık & Şarküteri", "days": 5, "unit": "gram", "qty": 350},
-        {"name": "Pırasa", "eng": "leek", "category": "Sebze & Meyve", "days": 5, "unit": "kg", "qty": 1},
-        {"name": "Domates", "eng": "tomato", "category": "Sebze & Meyve", "days": 5, "unit": "adet", "qty": 6},
-        {"name": "Armut", "eng": "pear", "category": "Sebze & Meyve", "days": 5, "unit": "adet", "qty": 4},
-        {"name": "Şeftali", "eng": "peach", "category": "Sebze & Meyve", "days": 5, "unit": "adet", "qty": 4},
-        {"name": "Üzüm", "eng": "grapes", "category": "Sebze & Meyve", "days": 5, "unit": "gram", "qty": 500},
-        {"name": "Beyaz Peynir", "eng": "feta cheese", "category": "Süt & Süt Ürünleri", "days": 6, "unit": "gram", "qty": 500},
-        {"name": "Kereviz", "eng": "celery", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 1},
-        {"name": "Kivi", "eng": "kiwi", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 4},
-        {"name": "Kavun", "eng": "melon", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 1},
-        {"name": "Taze Mısır", "eng": "corn", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 3},
-        {"name": "Yufka", "eng": "phyllo dough", "category": "Ekmek & Unlu Mamuller", "days": 6, "unit": "paket", "qty": 1},
-        {"name": "Kırmızı Lahana", "eng": "cabbage", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 1},
-        {"name": "Beyaz Lahana", "eng": "cabbage", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 1},
-        {"name": "Turp", "eng": "radish", "category": "Sebze & Meyve", "days": 6, "unit": "demet", "qty": 1},
-        {"name": "Pancar", "eng": "beet", "category": "Sebze & Meyve", "days": 6, "unit": "adet", "qty": 3},
-        {"name": "Balkabağı", "eng": "pumpkin", "category": "Sebze & Meyve", "days": 6, "unit": "dilim", "qty": 2},
-        {"name": "Taze Biberiye", "eng": "rosemary", "category": "Sebze & Meyve", "days": 6, "unit": "demet", "qty": 1},
-        {"name": "Lavaş Ekmeği", "eng": "tortilla", "category": "Ekmek & Unlu Mamuller", "days": 7, "unit": "paket", "qty": 2},
-        {"name": "Tereyağı", "eng": "butter", "category": "Süt & Süt Ürünleri", "days": 10, "unit": "gram", "qty": 250},
-        {"name": "Havuç", "eng": "carrot", "category": "Sebze & Meyve", "days": 12, "unit": "adet", "qty": 6},
-        {"name": "Limon", "eng": "lemon", "category": "Sebze & Meyve", "days": 14, "unit": "adet", "qty": 5},
-        {"name": "Portakal", "eng": "orange", "category": "Sebze & Meyve", "days": 14, "unit": "adet", "qty": 5},
-        {"name": "Elma", "eng": "apple", "category": "Sebze & Meyve", "days": 15, "unit": "adet", "qty": 6},
-        {"name": "Çedar Peyniri", "eng": "cheddar cheese", "category": "Süt & Süt Ürünleri", "days": 15, "unit": "gram", "qty": 200},
-        {"name": "Taze Zencefil", "eng": "ginger", "category": "Sebze & Meyve", "days": 16, "unit": "gram", "qty": 150},
-        {"name": "Yumurta", "eng": "egg", "category": "Kahvaltılık & Şarküteri", "days": 18, "unit": "adet", "qty": 15},
-        {"name": "Kuru Soğan", "eng": "onion", "category": "Sebze & Meyve", "days": 20, "unit": "kg", "qty": 2},
-        {"name": "Patates", "eng": "potato", "category": "Sebze & Meyve", "days": 20, "unit": "kg", "qty": 3},
-        {"name": "Parmesan Peyniri", "eng": "parmesan", "category": "Süt & Süt Ürünleri", "days": 20, "unit": "gram", "qty": 150},
-        {"name": "Sarımsak", "eng": "garlic", "category": "Sebze & Meyve", "days": 25, "unit": "baş", "qty": 4},
-        {"name": "Mayonez", "eng": "mayonnaise", "category": "Sos & Baharat", "days": 30, "unit": "kavanoz", "qty": 1},
-        {"name": "Zeytin (Yeşil)", "eng": "olives", "category": "Kahvaltılık & Şarküteri", "days": 45, "unit": "kavanoz", "qty": 1},
-        {"name": "Siyah Zeytin", "eng": "black olives", "category": "Kahvaltılık & Şarküteri", "days": 45, "unit": "kavanoz", "qty": 1},
-        {"name": "Domates Salçası", "eng": "tomato paste", "category": "Sos & Baharat", "days": 60, "unit": "kavanoz", "qty": 1},
-        {"name": "Biber Salçası", "eng": "pepper paste", "category": "Sos & Baharat", "days": 60, "unit": "kavanoz", "qty": 1},
-        {"name": "Çam Fıstığı", "eng": "pine nuts", "category": "Kuru Yemiş & Atıştırmalık", "days": 60, "unit": "gram", "qty": 100},
-        {"name": "Hardal", "eng": "mustard", "category": "Sos & Baharat", "days": 90, "unit": "kavanoz", "qty": 1},
-        {"name": "Ketçap", "eng": "ketchup", "category": "Sos & Baharat", "days": 90, "unit": "şişe", "qty": 1},
-        {"name": "Ceviz İçi", "eng": "walnuts", "category": "Kuru Yemiş & Atıştırmalık", "days": 90, "unit": "gram", "qty": 250},
-        {"name": "Fındık İçi", "eng": "hazelnuts", "category": "Kuru Yemiş & Atıştırmalık", "days": 90, "unit": "gram", "qty": 250},
-        {"name": "Badem", "eng": "almonds", "category": "Kuru Yemiş & Atıştırmalık", "days": 120, "unit": "gram", "qty": 250},
-        {"name": "Kuru İncir", "eng": "dried figs", "category": "Kuru Yemiş & Atıştırmalık", "days": 120, "unit": "gram", "qty": 200},
-        {"name": "Kırmızı Mercimek", "eng": "lentil", "category": "Bakliyat & Kuru Gıda", "days": 180, "unit": "kg", "qty": 1},
-        {"name": "Yeşil Mercimek", "eng": "lentils", "category": "Bakliyat & Kuru Gıda", "days": 180, "unit": "kg", "qty": 1},
-        {"name": "Yulaf Ezmesi", "eng": "oats", "category": "Bakliyat & Kuru Gıda", "days": 180, "unit": "paket", "qty": 1},
-        {"name": "Kuru Üzüm", "eng": "raisins", "category": "Kuru Yemiş & Atıştırmalık", "days": 180, "unit": "gram", "qty": 200},
-        {"name": "Çilek Reçeli", "eng": "jam", "category": "Kahvaltılık & Şarküteri", "days": 180, "unit": "kavanoz", "qty": 1},
-        {"name": "Tahin", "eng": "tahini", "category": "Kahvaltılık & Şarküteri", "days": 180, "unit": "kavanoz", "qty": 1},
-        {"name": "Konserve Mısır", "eng": "canned corn", "category": "Konserve & Hazır Gıda", "days": 180, "unit": "kutu", "qty": 2},
-        {"name": "Konserve Bezelye", "eng": "canned peas", "category": "Konserve & Hazır Gıda", "days": 180, "unit": "kutu", "qty": 2},
-        {"name": "Buğday Unu", "eng": "flour", "category": "Temel Gıda", "days": 180, "unit": "kg", "qty": 2},
-        {"name": "Nohut", "eng": "chickpeas", "category": "Bakliyat & Kuru Gıda", "days": 200, "unit": "kg", "qty": 1},
-        {"name": "Kuru Fasulye", "eng": "beans", "category": "Bakliyat & Kuru Gıda", "days": 200, "unit": "kg", "qty": 1},
-        {"name": "Pirinç (Baldo)", "eng": "rice", "category": "Bakliyat & Kuru Gıda", "days": 240, "unit": "kg", "qty": 2},
-        {"name": "Pilavlık Bulgur", "eng": "bulgur", "category": "Bakliyat & Kuru Gıda", "days": 240, "unit": "kg", "qty": 1},
-        {"name": "Pekmez", "eng": "molasses", "category": "Kahvaltılık & Şarküteri", "days": 240, "unit": "kavanoz", "qty": 1},
-        {"name": "Konserve Ton Balığı", "eng": "tuna", "category": "Konserve & Hazır Gıda", "days": 240, "unit": "kutu", "qty": 3},
-        {"name": "Makarna (Burgu)", "eng": "pasta", "category": "Bakliyat & Kuru Gıda", "days": 300, "unit": "paket", "qty": 2},
-        {"name": "Spagetti", "eng": "spaghetti", "category": "Bakliyat & Kuru Gıda", "days": 300, "unit": "paket", "qty": 2},
-        {"name": "Soya Sosu", "eng": "soy sauce", "category": "Sos & Baharat", "days": 300, "unit": "şişe", "qty": 1},
-        {"name": "Sızma Zeytinyağı", "eng": "olive oil", "category": "Sos & Baharat", "days": 365, "unit": "litre", "qty": 1},
-        {"name": "Ayçiçek Yağı", "eng": "vegetable oil", "category": "Sos & Baharat", "days": 365, "unit": "litre", "qty": 2},
-        {"name": "Balzamik Sirke", "eng": "vinegar", "category": "Sos & Baharat", "days": 365, "unit": "şişe", "qty": 1},
-        {"name": "Kuru Kekik", "eng": "thyme", "category": "Sos & Baharat", "days": 365, "unit": "kavanoz", "qty": 1},
-        {"name": "Kuru Nane", "eng": "mint", "category": "Sos & Baharat", "days": 365, "unit": "kavanoz", "qty": 1},
-        {"name": "Kimyon", "eng": "cumin", "category": "Sos & Baharat", "days": 365, "unit": "kavanoz", "qty": 1},
-        {"name": "Süzme Çiçek Balı", "eng": "honey", "category": "Kahvaltılık & Şarküteri", "days": 500, "unit": "kavanoz", "qty": 1},
-    ]
+def parse_foodkeeper_dataset():
+    """
+    Kaggle üzerinden indirilen USDA FoodKeeper veri setini okur ve 
+    ürünlerin raf ömrü ve kategori kurallarını dinamik olarak çıkarır.
+    """
+    fk_json = os.path.join(DOWNLOAD_DIR, "foodkeeper.json")
+    if not os.path.exists(fk_json):
+        raise FileNotFoundError(f"FoodKeeper veri seti bulunamadı: {fk_json}")
+
+    with open(fk_json, "r", encoding="utf-8", errors="ignore") as f:
+        data = json.load(f)
+
+    # 1. Kategori isim eşlemeleri (FoodKeeper Category tablosu)
+    cat_map = {}
+    for cat_row in data["sheets"][1]["data"]:
+        c_dict = {}
+        for item in cat_row:
+            c_dict.update(item)
+        cat_map[c_dict.get("ID")] = c_dict.get("Category_Name")
+
+    # 2. Raf ömrünü gün cinsine çeviren yardımcı fonksiyon
+    def to_days(val, metric):
+        if not val or not metric:
+            return None
+        try:
+            val = float(val)
+        except Exception:
+            return None
+        m = str(metric).lower()
+        if "day" in m:
+            return int(val)
+        if "week" in m:
+            return int(val * 7)
+        if "month" in m:
+            return int(val * 30)
+        if "year" in m:
+            return int(val * 365)
+        return None
+
+    category_translation = {
+        "Dairy Products & Eggs": "Süt & Süt Ürünleri",
+        "Meat": "Et, Tavuk & Balık",
+        "Poultry": "Et, Tavuk & Balık",
+        "Seafood": "Et, Tavuk & Balık",
+        "Produce": "Sebze & Meyve",
+        "Grains, Beans & Pasta": "Bakliyat & Kuru Gıda",
+        "Baked Goods": "Ekmek & Unlu Mamuller",
+        "Condiments, Sauces & Canned Goods": "Sos & Baharat",
+        "Deli & Prepared Foods": "Kahvaltılık & Şarküteri",
+        "Shelf Stable Foods": "Temel Gıda",
+        "Vegetarian Proteins": "Bakliyat & Kuru Gıda",
+        "Beverages": "İçecekler"
+    }
+
+    # 3. Ürün tablosunu dinamik olarak ayrıştır
+    extracted_products = []
+    seen = set()
+
+    for prod_row in data["sheets"][2]["data"]:
+        p_dict = {}
+        for item in prod_row:
+            p_dict.update(item)
+
+        name = p_dict.get("Name")
+        if not name or name.strip().lower() in seen:
+            continue
+
+        # Saklama süresini (Refrigerate / Pantry) FoodKeeper parametrelerinden oku
+        days = (
+            to_days(p_dict.get("Refrigerate_Max"), p_dict.get("Refrigerate_Metric")) or
+            to_days(p_dict.get("DOP_Refrigerate_Max"), p_dict.get("DOP_Refrigerate_Metric")) or
+            to_days(p_dict.get("Pantry_Max"), p_dict.get("Pantry_Metric")) or
+            to_days(p_dict.get("DOP_Pantry_Max"), p_dict.get("DOP_Pantry_Metric")) or
+            14
+        )
+
+        cat_raw = cat_map.get(p_dict.get("Category_ID"), "Shelf Stable Foods")
+        cat_tr = category_translation.get(cat_raw, "Temel Gıda")
+
+        seen.add(name.strip().lower())
+        extracted_products.append({
+            "name": name.strip(),
+            "category": cat_tr,
+            "max_shelf_life_days": days,
+            "subtitle": p_dict.get("Name_subtitle")
+        })
+
+    return extracted_products
+
+
+def build_pantry_seed_from_kaggle(today, target_count=100):
+    """
+    Kaggle FoodKeeper veri setinden dinamik olarak okunan ürünlerle
+    evsel kiler envanterini oluşturur. Kalan günleri hesaplar.
+    """
+    products = parse_foodkeeper_dataset()
 
     pantry_seed = []
-    for idx, item in enumerate(core_items):
-        exp_date = today + timedelta(days=item["days"])
+    for idx, p in enumerate(products[:target_count]):
+        max_days = p["max_shelf_life_days"]
 
-        if item["days"] <= 2:
+        # Evsel mutfak dinamiklerine göre kalan gün simülasyonu:
+        # Raf ömrü kısa ürünler öncelikli risk grubuna atanır.
+        if max_days <= 3:
+            days_remaining = max(1, max_days - 1)
+        elif max_days <= 7:
+            days_remaining = max(2, (idx % 5) + 2)
+        elif max_days <= 30:
+            days_remaining = max(4, (idx % 15) + 3)
+        else:
+            days_remaining = min(max_days, (idx * 5) + 15)
+
+        exp_date = today + timedelta(days=days_remaining)
+
+        if days_remaining <= 2:
             status = "RED"
-        elif item["days"] <= 6:
+        elif days_remaining <= 6:
             status = "YELLOW"
         else:
             status = "GREEN"
 
+        # Lookup için temizlenmiş küçük harfli malzeme adı
+        lookup_name = p["name"].lower().replace('"', '').replace("'", "").strip()
+
+        # Birim belirleme
+        unit = "gram"
+        qty = 500
+        if "milk" in lookup_name or "cream" in lookup_name or "juice" in lookup_name:
+            unit = "ml"
+            qty = 1000
+        elif "oil" in lookup_name or "vinegar" in lookup_name:
+            unit = "litre"
+            qty = 1
+        elif "egg" in lookup_name:
+            unit = "adet"
+            qty = 10
+        elif p["category"] == "Sebze & Meyve":
+            unit = "adet"
+            qty = 5
+
         pantry_seed.append({
             "id": f"item-{idx+1:03d}",
-            "name": item["name"],
-            "ingredient_lookup": item["eng"],
-            "category": item["category"],
-            "quantity": item["qty"],
-            "unit": item["unit"],
+            "name": p["name"],
+            "ingredient_lookup": lookup_name,
+            "category": p["category"],
+            "quantity": qty,
+            "unit": unit,
             "expiration_date": exp_date.strftime("%Y-%m-%d"),
-            "days_remaining": item["days"],
+            "days_remaining": days_remaining,
             "status": status,
-            "priority_score": item["days"],
+            "priority_score": days_remaining,
         })
 
     return pantry_seed
 
 
 def match_rescue_recipes(pantry_seed, target_count=100):
-    """Food.com veri setini tarayarak eşleşen kurtarma tariflerini filtreler."""
+    """
+    Food.com veri setini (RAW_recipes.csv) parça parça (chunk) okuyarak
+    kilerdeki acil gıdaları kurtaran gerçek tarifleri dinamik olarak filtreler.
+    """
     recipes_csv = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv")
     if not os.path.exists(recipes_csv):
         raise FileNotFoundError(f"Tarif veri seti bulunamadı: {recipes_csv}")
@@ -278,6 +303,7 @@ def match_rescue_recipes(pantry_seed, target_count=100):
             raw_ingredients_text = str(row.get("ingredients", "")).lower()
             matched_ings = [ing for ing in target_ingredients if ing in raw_ingredients_text]
 
+            # En az 2 acil kiler malzemesini kurtaran tarifleri seç
             if len(matched_ings) >= 2:
                 raw_steps = row.get("steps", "")
                 try:
@@ -315,7 +341,11 @@ def main():
     download_datasets(api)
 
     today = datetime(2026, 10, 6)
-    pantry_seed = build_social_pantry_catalog(today)
+
+    # 1. Kaggle FoodKeeper veri setinden kiler verisini dinamik olarak üret
+    pantry_seed = build_pantry_seed_from_kaggle(today, target_count=100)
+
+    # 2. Kaggle Food.com CSV veri setinden kurtarma tariflerini dinamik olarak filtrele
     recipes_seed = match_rescue_recipes(pantry_seed, target_count=100)
 
     pantry_json_path = os.path.join(BASE_DIR, "pantry_seed.json")
@@ -327,8 +357,8 @@ def main():
     with open(recipes_json_path, "w", encoding="utf-8") as f:
         json.dump(recipes_seed, f, ensure_ascii=False, indent=2)
 
-    print(f"Kiler tohum verisi hazır: {len(pantry_seed)} ürün.")
-    print(f"Tarif tohum verisi hazır: {len(recipes_seed)} tarif.")
+    print(f"Kaggle FoodKeeper'dan {len(pantry_seed)} adet kiler ürünü dinamik olarak okundu ve işlendi.")
+    print(f"Kaggle Food.com CSV'den {len(recipes_seed)} adet kurtarma tarifi dinamik olarak eşleştirildi.")
 
 
 if __name__ == "__main__":
