@@ -5,13 +5,15 @@
     "prep_time_minutes": 30,
     "matched_ingredients": [
       "milk",
+      "sausage",
       "cheese"
     ],
     "instructions": [
       "preheat oven to 425 degrees f",
       "press dough into the bottom and sides of a 12 inch pizza pan",
       "bake for 5 minutes until set but not browned",
-      "cut sausage into small pieces"
+      "cut sausage into small pieces",
+      "whisk eggs and milk in a bowl until frothy"
     ]
   },
   {
@@ -21,13 +23,160 @@
     "matched_ingredients": [
       "ground beef",
       "cheese",
-      "tomato"
+      "tomato",
+      "lettuce"
     ],
     "instructions": [
       "brown ground beef in large pot",
       "add chopped onions to ground beef when almost brown and sautee until wilted",
       "add all other ingredients",
-      "add kidney beans if you like beans in your chili"
+      "add kidney beans if you like beans in your chili",
+      "cook in slow cooker on high for 2-3 hours or 6-8 hours on low"
+    ]
+  },
+  {
+    "recipe_id": "rec-59389",
+    "title": "Alouette  Potatoes",
+    "prep_time_minutes": 45,
+    "matched_ingredients": [
+      "bell pepper",
+      "parsley",
+      "cheese"
+    ],
+    "instructions": [
+      "place potatoes in a large pot of lightly salted water and bring to a gentle boil",
+      "cook until potatoes are just tender",
+      "drain",
+      "place potatoes in a large bowl and add all ingredients except the\"alouette\"",
+      "mix well and transfer to a buttered 8x8 inch glass baking dish with 2 inch sides"
+    ]
+  },
+  {
+    "recipe_id": "rec-5289",
+    "title": "Apple A Day  Milk Shake",
+    "prep_time_minutes": 0,
+    "matched_ingredients": [
+      "milk",
+      "cream"
+    ],
+    "instructions": [
+      "combine ingredients in blender",
+      "cover and blend until smooth",
+      "sprinkle with ground cinnamon",
+      "makes about 2 cups"
+    ]
+  },
+  {
+    "recipe_id": "rec-70971",
+    "title": "Bananas 4 Ice Cream  Pie",
+    "prep_time_minutes": 180,
+    "matched_ingredients": [
+      "banana",
+      "cream"
+    ],
+    "instructions": [
+      "crumble cookies into a 9-inch pie plate , or cake pan",
+      "pat down to form an even layer",
+      "drizzle 1 cup of chocolate topping evenly over the cookies with a small spoon",
+      "scoop the vanilla ice cream on top of the chocolate and smooth down",
+      "cover with half of the sliced bananas"
+    ]
+  },
+  {
+    "recipe_id": "rec-109439",
+    "title": "Berry  Good Sandwich Spread",
+    "prep_time_minutes": 5,
+    "matched_ingredients": [
+      "cream",
+      "radish"
+    ],
+    "instructions": [
+      "in medium size bowl , coarsely mash cranberry sauce",
+      "stir in sour cream and horseradish until well blended"
+    ]
+  },
+  {
+    "recipe_id": "rec-43026",
+    "title": "Chile Rellenos",
+    "prep_time_minutes": 45,
+    "matched_ingredients": [
+      "corn",
+      "cheese"
+    ],
+    "instructions": [
+      "drain green chiles",
+      "sprinkle cornstarch on sheet pan",
+      "open up chile and place on egg roll wrapper with corner facing you",
+      "place cheese stick on chile and roll up , tucking in corners and moistening edges to seal",
+      "toss in cornstarch , dusting liberally"
+    ]
+  },
+  {
+    "recipe_id": "rec-23850",
+    "title": "Cream  Of Cauliflower Soup  Vegan",
+    "prep_time_minutes": 110,
+    "matched_ingredients": [
+      "broccoli",
+      "bell pepper",
+      "cauliflower",
+      "peas"
+    ],
+    "instructions": [
+      "heat the oil or margarine in a soup pot and add the onion and garlic",
+      "saute over medium heat until the onion is golden , about 10 minutes",
+      "add the cauliflower , potatoes , water , and seasonings",
+      "there should be enough broth to cover all but about an inch of the veggies",
+      "bring to a simmer , then simmer gently covered until the veggies are tender , about 25 minutes"
+    ]
+  },
+  {
+    "recipe_id": "rec-24701",
+    "title": "Cream  Of Spinach Soup  Vegan",
+    "prep_time_minutes": 55,
+    "matched_ingredients": [
+      "celery",
+      "parsley",
+      "spinach"
+    ],
+    "instructions": [
+      "in a 3 qt saucepan over medium high heat , saute the onions and scallions in the apple juice and oil for 5 minutes , stirring frequently",
+      "add the spinach , parsley and celery",
+      "cook for 5-7 minutes , stirring occasionally add the broth , oats , salt , thyme and pepper",
+      "bring to a boil , then lower the heat to medium",
+      "cover and simmer for 20 minutes"
+    ]
+  },
+  {
+    "recipe_id": "rec-83873",
+    "title": "Crispy Crunchy  Chicken",
+    "prep_time_minutes": 35,
+    "matched_ingredients": [
+      "cream",
+      "corn",
+      "chicken breast"
+    ],
+    "instructions": [
+      "combine soup , egg and seasoned salt in a bowl and set aside",
+      "mix together flour , cornstarch , garlic powder , paprika , salt and pepper in a resealable plastic bag",
+      "dip chicken pieces into soup mixture and turn so as to coat all over",
+      "place chicken pieces in bag with flour mixture , seal bag and shake to coat chicken",
+      "place coated pieces of chicken on a platter and allow to set until the coating becomes doughy"
+    ]
+  },
+  {
+    "recipe_id": "rec-107699",
+    "title": "Deep Fried Dessert Thingys",
+    "prep_time_minutes": 20,
+    "matched_ingredients": [
+      "bread",
+      "milk"
+    ],
+    "instructions": [
+      "in a large bowl , mix flour , granulated sugar , baking powder and salt",
+      "make a well in the center of the flour mixture , and pour in milk , vanilla , egg and 2 tablespoons oil",
+      "mix until smooth",
+      "heat remaining vegetable oil to 400 degrees in a small deep fryer",
+      "oil is hot enough when it starts to ripple"
     ]
   },
   {
@@ -35,6 +184,7 @@
     "title": "Fool The Meat Eaters  Chili",
     "prep_time_minutes": 40,
     "matched_ingredients": [
+      "celery",
       "ground beef",
       "tomato"
     ],
@@ -42,7 +192,8 @@
       "rehydrate tvp if needed",
       "spray or oil a large pot",
       "chop the onion , hot peppers , and garlic and add to the pot",
-      "chop remaining vegetables , add to pot and brown lightly"
+      "chop remaining vegetables , add to pot and brown lightly",
+      "add remaining ingredients"
     ]
   },
   {
@@ -50,14 +201,37 @@
     "title": "Forgotten  Minestrone",
     "prep_time_minutes": 495,
     "matched_ingredients": [
+      "cabbage",
+      "parsley",
       "cheese",
-      "tomato"
+      "tomato",
+      "zucchini"
     ],
     "instructions": [
       "in a slow cooker , combine the first nine ingredients",
       "cover and cook on low for 7-9 hours or until meat is tender",
       "add zucchini , cabbage , beans and macaroni",
-      "cook on high 30-45 minutes more or until the vegetables are tender"
+      "cook on high 30-45 minutes more or until the vegetables are tender",
+      "sprinkle individual servings with parmesan cheese"
+    ]
+  },
+  {
+    "recipe_id": "rec-44123",
+    "title": "George S At The Cove  Black Bean Soup",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "broccoli",
+      "celery",
+      "cream",
+      "corn",
+      "basil"
+    ],
+    "instructions": [
+      "in 1 / 4 cup butter , saute carrots , onion , celery and broccoli stems for 5 minutes",
+      "add thyme , oregano and basil",
+      "saute 5 minutes more",
+      "add wine and deglaze pan",
+      "add hot chicken stock and reduce by one-third"
     ]
   },
   {
@@ -65,6 +239,7 @@
     "title": "Global Gourmet  Taco Casserole",
     "prep_time_minutes": 55,
     "matched_ingredients": [
+      "corn",
       "ground beef",
       "cheese",
       "tomato"
@@ -73,7 +248,56 @@
       "heat oven to 375 degrees",
       "brown ground beef and onion over medium heat",
       "drain",
-      "stir in tomato sauce , taco or other sauce , salt , pepper , tabasco , chiles , and cornmeal , adjusting for\"hot\" taste preference and desired thickness"
+      "stir in tomato sauce , taco or other sauce , salt , pepper , tabasco , chiles , and cornmeal , adjusting for\"hot\" taste preference and desired thickness",
+      "stir in more cornmeal , if desired"
+    ]
+  },
+  {
+    "recipe_id": "rec-54100",
+    "title": "Grilled  Venison Burgers",
+    "prep_time_minutes": 26,
+    "matched_ingredients": [
+      "bread",
+      "milk"
+    ],
+    "instructions": [
+      "in bowl , mix dry ingredients",
+      "add venison and mix well",
+      "add liquid ingredients and mix well with a fork , until bread crumbs are barely noticeable",
+      "on plastic wrap , form into 8 patties , making them round and very flat-- like a fast-food burger",
+      "they can be cooked immediately , but i prefer to freeze them first"
+    ]
+  },
+  {
+    "recipe_id": "rec-67664",
+    "title": "Healthy For Them  Yogurt Popsicles",
+    "prep_time_minutes": 10,
+    "matched_ingredients": [
+      "milk",
+      "yogurt"
+    ],
+    "instructions": [
+      "mix all the ingredients using a blender",
+      "pour into popsicle molds",
+      "freeze and enjoy !"
+    ]
+  },
+  {
+    "recipe_id": "rec-87098",
+    "title": "Homemade  Vegetable Soup From A Can",
+    "prep_time_minutes": 12,
+    "matched_ingredients": [
+      "green beans",
+      "corn",
+      "tomato",
+      "zucchini"
+    ],
+    "instructions": [
+      "combine all ingredients in large pot",
+      "bring to a boil and simmer for 3 minutes",
+      "serve",
+      "i use the tomatoes that come flavored with basil , oregano , and garlic",
+      "you can substitute whatever vegetables you like"
     ]
   },
   {
@@ -81,14 +305,50 @@
     "title": "How I Got My Family To Eat Spinach  Spinach Casserole",
     "prep_time_minutes": 50,
     "matched_ingredients": [
+      "cream",
       "mushroom",
+      "spinach",
       "cheese"
     ],
     "instructions": [
       "preheat oven to 350 degrees",
       "place spinach in strainer and squeeze all extra liquid from it",
       "in a large bowl , combine spinach with the rest of ingredients , except croutons , and combine well",
-      "pour into a 2 quart casserole dish and top with croutons"
+      "pour into a 2 quart casserole dish and top with croutons",
+      "bake for 35 to 40 minutes , or until bubbling around edges"
+    ]
+  },
+  {
+    "recipe_id": "rec-33165",
+    "title": "I Can T Believe It S Low Fat  Creamy Potato Salad",
+    "prep_time_minutes": 30,
+    "matched_ingredients": [
+      "celery",
+      "cream",
+      "yogurt"
+    ],
+    "instructions": [
+      "cut potatoes into 1 / 2\" pieces",
+      "place in medium saucepan",
+      "add water to cover",
+      "bring to a boil",
+      "cover , reduce heat , and simmer 15-20 minutes or until tender"
+    ]
+  },
+  {
+    "recipe_id": "rec-38798",
+    "title": "I Can T Believe It S Spinach",
+    "prep_time_minutes": 30,
+    "matched_ingredients": [
+      "bread",
+      "spinach"
+    ],
+    "instructions": [
+      "combine all ingredients in a large bowl and mix well",
+      "shape into one-inch balls",
+      "cover and refrigerate or freeze until ready to bake",
+      "preheat oven to 350 degrees",
+      "place on ungreased baking sheet and bake until light brown"
     ]
   },
   {
@@ -96,14 +356,18 @@
     "title": "I Don T Feel Like Cooking Tonight  Casserole",
     "prep_time_minutes": 45,
     "matched_ingredients": [
+      "bread",
+      "cream",
       "mushroom",
+      "corn",
       "ground beef"
     ],
     "instructions": [
       "brown onion and meat in the oil , drain any excess moisture",
       "remove from heat and add both cans of soup and the veggies of your choice and stir",
       "salt and pepper to taste",
-      "pour mixture into a greased 9x9 inch baking pan"
+      "pour mixture into a greased 9x9 inch baking pan",
+      "spoon the prepared cornbread mix over the top and spread even"
     ]
   },
   {
@@ -118,7 +382,8 @@
       "brown the meat & drain fat",
       "stir in sugar , mustard , beer , cayenne , garlic and salt & pepper to taste",
       "simmer until liquid has mostly cooked away",
-      "lay slices of cheese over top of meat , then cover for about 5 minutes , with heat on very low , until cheese has melted"
+      "lay slices of cheese over top of meat , then cover for about 5 minutes , with heat on very low , until cheese has melted",
+      "stir cheese into meat"
     ]
   },
   {
@@ -126,6 +391,7 @@
     "title": "Italian Sandwich  Pasta Salad",
     "prep_time_minutes": 25,
     "matched_ingredients": [
+      "dill",
       "cheese",
       "tomato"
     ],
@@ -133,7 +399,59 @@
       "cook pasta and set aside",
       "place onions , dill pickles , olives , water chestnuts , chives and peppers in a bowl",
       "add oil , vinegar and spices",
-      "marinate for 15-20 minutes or so"
+      "marinate for 15-20 minutes or so",
+      "add pasta , tomatoes , meat and cheese and toss lightly"
+    ]
+  },
+  {
+    "recipe_id": "rec-94710",
+    "title": "Italian  Fries",
+    "prep_time_minutes": 15,
+    "matched_ingredients": [
+      "parsley",
+      "cheese",
+      "basil"
+    ],
+    "instructions": [
+      "deep fry french fries according to package directions",
+      "drain well on paper towels , and transfer to a serving platter",
+      "season with salt and pepper , then sprinkle on remaining ingredients",
+      "serve with your favorite condiments"
+    ]
+  },
+  {
+    "recipe_id": "rec-35173",
+    "title": "Italian  Gut Busters",
+    "prep_time_minutes": 45,
+    "matched_ingredients": [
+      "mozzarella",
+      "turkey",
+      "cheese"
+    ],
+    "instructions": [
+      "lay out sandwich rolls on jelly roll pans / cookie sheets",
+      "melt butter , mix in italian dressing mix",
+      "using a pastry or bbq brush , graciously apply seasoned butter to the top of the\"bottom bun\" and the top of the top bun",
+      "don't miss this step , i don't know why , but it does make a difference !",
+      "here is where i create an assembly line w / the bottoms of the buns"
+    ]
+  },
+  {
+    "recipe_id": "rec-108414",
+    "title": "Jiffy  Roasted Corn And Jalapeno Cornbread",
+    "prep_time_minutes": 35,
+    "matched_ingredients": [
+      "bell pepper",
+      "cream",
+      "corn",
+      "cheese"
+    ],
+    "instructions": [
+      "melt butter in a saut pan",
+      "add the corn , onion and red pepper and saut on medium heat until some of the corn kernels start to turn golden brown",
+      "whisk egg , corn liquid , and cream together",
+      "stir into corn muffin mix with a fork",
+      "stir in diced jalapenos and cheddar cheese"
     ]
   },
   {
@@ -141,15 +459,1261 @@
     "title": "Killer  Lasagna",
     "prep_time_minutes": 90,
     "matched_ingredients": [
+      "cottage cheese",
+      "mozzarella",
+      "parsley",
       "ground beef",
+      "ricotta",
+      "sausage",
       "cheese",
-      "tomato"
+      "tomato",
+      "basil"
     ],
     "instructions": [
       "brown the sausage and ground meat and drain all the fat",
       "add all the other ingredients for the meat filling and simmer on the stove , uncovered , for about 1 / 2 hour",
       "i usually add a bay leaf or two",
-      "mix up the cheese filling and set aside in fridge until ready to use"
+      "mix up the cheese filling and set aside in fridge until ready to use",
+      "put the noodles in salted water and cook until soft when poked with a fork"
+    ]
+  },
+  {
+    "recipe_id": "rec-59632",
+    "title": "Kitchen Sink  Egg Bake",
+    "prep_time_minutes": 70,
+    "matched_ingredients": [
+      "cottage cheese",
+      "spinach",
+      "cheese"
+    ],
+    "instructions": [
+      "preheat oven to 325",
+      "thaw spinach , and squeeze out as much moisture as possible",
+      "beat the eggs in medium bowl",
+      "stir in the cottage cheese , grated cheese , spinach and seasonings",
+      "stir until mixed thoroughly"
+    ]
+  },
+  {
+    "recipe_id": "rec-100870",
+    "title": "Leftovers  Spaghetti Sauce",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "ground beef",
+      "tomato"
+    ],
+    "instructions": [
+      "i had previously browned and drained the ground beef and had it in the fridge , if you don't have this leftover , brown ground beef first in a nonstick skillet , drain off fat really well",
+      "i use a pile of paper towels to soak up the fat",
+      "place ground beef in a large pot",
+      "stir in all other ingredients except the sugar",
+      "bring to a boil , stirring occasionally"
+    ]
+  },
+  {
+    "recipe_id": "rec-84797",
+    "title": "Love Is In The Air  Beef Fondue   Sauces",
+    "prep_time_minutes": 25,
+    "matched_ingredients": [
+      "dill",
+      "steak",
+      "cream",
+      "parsley"
+    ],
+    "instructions": [
+      "honey mustard sauce: whisk all the ingredients together serve warm or cold",
+      "easy bbq sauce: combine all ingredients in a pot& cook over low heat until the sugar is dissolved",
+      "serve warm or cold",
+      "garlic dill sauce: mix all the ingredients and chill until ready to serve"
+    ]
+  },
+  {
+    "recipe_id": "rec-32169",
+    "title": "Make That Chicken Dance  Salsa Pasta",
+    "prep_time_minutes": 30,
+    "matched_ingredients": [
+      "parsley",
+      "mushroom",
+      "chicken breast",
+      "cheese",
+      "tomato",
+      "basil"
+    ],
+    "instructions": [
+      "heat oil in a frying pan and saut the onions and mushrooms until soft , about two minutes",
+      "add the water , tomatoes , garlic , oregano , basil , parsley and hot sauce",
+      "simmer over low heat for 6-10 minutes or until tomatoes are soft and enough water has evaporated to form a relatively thick sauce",
+      "add salsa and chicken",
+      "simmer until heated through"
+    ]
+  },
+  {
+    "recipe_id": "rec-44045",
+    "title": "Mennonite  Corn Fritters",
+    "prep_time_minutes": 15,
+    "matched_ingredients": [
+      "cream",
+      "corn"
+    ],
+    "instructions": [
+      "combine eggs , flour , baking powder , salt& pepper with the corn",
+      "mix thoroughly",
+      "add cream to mixture",
+      "melt fat in frying pan& drop corn mixture by spoonfuls into the hot fat",
+      "brown on both sides"
+    ]
+  },
+  {
+    "recipe_id": "rec-60219",
+    "title": "Mexican Pasta",
+    "prep_time_minutes": 25,
+    "matched_ingredients": [
+      "milk",
+      "cheese"
+    ],
+    "instructions": [
+      "boil pasta as directed on package",
+      "drain and put in large serving bowl",
+      "mix picante sauce , milk , and cheese soup in a smaller bowl until creamy",
+      "heat in microwave until warm",
+      "mix sauce and pasta together and garnish with olives and jalepenos if desired"
+    ]
+  },
+  {
+    "recipe_id": "rec-81185",
+    "title": "Mock A Mole   Low Fat Guacamole",
+    "prep_time_minutes": 15,
+    "matched_ingredients": [
+      "avocado",
+      "peas",
+      "tomato"
+    ],
+    "instructions": [
+      "thaw peas by running hot water over them in a strainer until they are bright green",
+      "puree peas in food processor",
+      "add 1 / 4 of one avocado , salt , and juice of one lemon or lime",
+      "puree again and transfer to a bowl",
+      "coarsely mash the remaining avocado and stir in tomato and onion"
+    ]
+  },
+  {
+    "recipe_id": "rec-63593",
+    "title": "More  More    Apple Pear Jigglers",
+    "prep_time_minutes": 125,
+    "matched_ingredients": [
+      "milk",
+      "cream",
+      "yogurt",
+      "cream cheese",
+      "cheese",
+      "pear"
+    ],
+    "instructions": [
+      "in a food processor or blender , process the gelatin and milk for 30 seconds or until gelatin is disolved and mixture is smooth",
+      "add the cream cheese and yogurt and process for 10 seconds",
+      "add the fruits and blend until thoroughly pured",
+      "spray an 8-inch square baking pan with nonstick spray",
+      "pour gelatin mixture into pan and chill until firm"
+    ]
+  },
+  {
+    "recipe_id": "rec-78655",
+    "title": "My Muffuletta Sandwich",
+    "prep_time_minutes": 20,
+    "matched_ingredients": [
+      "parsley",
+      "cheese",
+      "tomato",
+      "basil"
+    ],
+    "instructions": [
+      "mix everything in food processor",
+      "chop fine for spread",
+      "refrigerate until ready to use"
+    ]
+  },
+  {
+    "recipe_id": "rec-71635",
+    "title": "No Bake  Cookie Crumble Cheesecake",
+    "prep_time_minutes": 135,
+    "matched_ingredients": [
+      "milk",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "in blender , sprinkle gelatin over cold milk",
+      "let stand 2 minutes",
+      "add hot milk and process at low until dissolved , about 2 minutes",
+      "add cream cheese , sugar and vanilla and process until blended",
+      "arrange mini chocolate chips in the bottom of the crust"
+    ]
+  },
+  {
+    "recipe_id": "rec-38276",
+    "title": "Now And Later  Vegetarian Empanadas",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "celery",
+      "mushroom",
+      "cheese",
+      "tomato",
+      "zucchini"
+    ],
+    "instructions": [
+      "in a pot , cover carrots with water to cover",
+      "bring to a boil , then lower heat",
+      "simmer 10 minutes or until just tender",
+      "while simmering carrots , pour contents of can of tomatoes into a bowl and squish into little pieces with your hands",
+      "wash hands"
+    ]
+  },
+  {
+    "recipe_id": "rec-107229",
+    "title": "Open Sesame  Noodles",
+    "prep_time_minutes": 28,
+    "matched_ingredients": [
+      "broccoli",
+      "green onions"
+    ],
+    "instructions": [
+      "cook pasta in salted water until al dente",
+      "drain",
+      "steam broccoli , set aside",
+      "whisk next 6 ingredients together in large serving bowl",
+      "add hot pasta"
+    ]
+  },
+  {
+    "recipe_id": "rec-5060",
+    "title": "Philly  Waldorf Salad",
+    "prep_time_minutes": 60,
+    "matched_ingredients": [
+      "celery",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "combine softened cream cheese , orange juice , orange rind and sugar , mixing until well blended",
+      "add remaining ingredients",
+      "mix lightly",
+      "chill"
+    ]
+  },
+  {
+    "recipe_id": "rec-52443",
+    "title": "Pizza  Stuffed Potato",
+    "prep_time_minutes": 25,
+    "matched_ingredients": [
+      "mozzarella",
+      "ricotta",
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "preheat oven to 450 degrees",
+      "cut potato in half lengthwise",
+      "scoop out pulp from potato halves into a bowl , leaving 1 / 4-inch-thick shells",
+      "mash pulp and reserve shells",
+      "add 1 ounce mozzarella cheese , the tomato sauce , ricotta cheese , oregano and garlic powder to potato pulp and stir to combine"
+    ]
+  },
+  {
+    "recipe_id": "rec-35595",
+    "title": "Pour Over Anything  Mushroom Gravy",
+    "prep_time_minutes": 20,
+    "matched_ingredients": [
+      "mushroom",
+      "corn",
+      "tomato"
+    ],
+    "instructions": [
+      "in a small saucepan , saut onion and mushrooms in a small amount oil",
+      "mix dissolved cornstarch into a cup of vegetable broth",
+      "slowly add to onions and mushrooms",
+      "add the other ingredients too",
+      "check the seasonings and cook gently until thickened"
+    ]
+  },
+  {
+    "recipe_id": "rec-108804",
+    "title": "Put Down Your Fork   Tuna And Bean Salad",
+    "prep_time_minutes": 120,
+    "matched_ingredients": [
+      "bell pepper",
+      "basil",
+      "lettuce"
+    ],
+    "instructions": [
+      "in salad bowl , combine oil , vinegar , garlic , salt , basil and black pepper",
+      "add beans , tuna , scallions and sweet pepper and toss",
+      "chill several hours for flavors to blend",
+      "to make a beautiful presentation , serve on a leaf of bibb lettuce"
+    ]
+  },
+  {
+    "recipe_id": "rec-83950",
+    "title": "Real  Italian Bolognese Sauce",
+    "prep_time_minutes": 160,
+    "matched_ingredients": [
+      "celery",
+      "milk",
+      "ground beef",
+      "tomato"
+    ],
+    "instructions": [
+      "in a dutch oven or medium size pot , heat butter and olive oil over medium heat until butter begins to froth",
+      "add onion , celery , carrot , garlic , and bacon",
+      "cook until onions are translucent",
+      "remove bacon and remove fat",
+      "chop lean portions of bacon in small pieces and return to pot"
+    ]
+  },
+  {
+    "recipe_id": "rec-64302",
+    "title": "Red  Macaroni Salad",
+    "prep_time_minutes": 1470,
+    "matched_ingredients": [
+      "celery",
+      "cucumber",
+      "tomato"
+    ],
+    "instructions": [
+      "in large mixing bowl , combine your macaroni& diced veggies",
+      "in another bowl , combine sauce ingredients , blending well",
+      "pour sauce over the macaroni& vegetables",
+      "mix well& chill",
+      "this can be made up to a day before for fullest flavour"
+    ]
+  },
+  {
+    "recipe_id": "rec-95926",
+    "title": "Say What   Banana Sandwich",
+    "prep_time_minutes": 5,
+    "matched_ingredients": [
+      "banana",
+      "bread"
+    ],
+    "instructions": [
+      "spread a tablespoon on one side of each slice on bread",
+      "peel and cut the bananas into 1 / 4-inch round slices",
+      "lay the slices on two of the slices of bread and then top with the other half",
+      "enjoy !"
+    ]
+  },
+  {
+    "recipe_id": "rec-103948",
+    "title": "Smells Like Sunday  Chicken Fricassee With Meatballs",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "bread",
+      "milk",
+      "ground beef"
+    ],
+    "instructions": [
+      "first of all make the meatballs by combining all the meatball ingredients in a bowl , mixing well",
+      "shape mixture into 1 1 / 2 inch balls and brown in a single layer in the oil , over medium high heat , turning occasionally , until well browned on all sides , about 7 to 8 minutes",
+      "alternatively meatballs can be browned in a hot oven",
+      "remove from the skillet and drain on paper towels",
+      "wipe the skillet clean"
+    ]
+  },
+  {
+    "recipe_id": "rec-99024",
+    "title": "Smoked  Salmon  Cracker Spread",
+    "prep_time_minutes": 65,
+    "matched_ingredients": [
+      "salmon",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "in small mixer bowl beat cream cheese at med",
+      "speed , scraping bowl often , until light and fluffy add salt , lemon juice , onion , and liquid smoke",
+      "continue beating until well mixed",
+      "by hand , stir in salmon",
+      "spoon into serving bowl and serve with crackers"
+    ]
+  },
+  {
+    "recipe_id": "rec-64045",
+    "title": "Some Like It Hot",
+    "prep_time_minutes": 70,
+    "matched_ingredients": [
+      "green beans",
+      "tomato"
+    ],
+    "instructions": [
+      "start with the topping , in a frying pan , dry fry the coconut and peanuts until golden brown , tossing it so it wont burn , remove from the pan and let cool",
+      "mix together the soy sauce , cayenne , sambal , ginger , sugar , garlic and water , set aside , you will use this after you fried the tempeh",
+      "in a wok or frying pan , heat the tablespoon of oil , fry the onion and garlic for one minute , add the coriander , cumin and if you use them the chili peppers , fry this for two minutes",
+      "add the carrots , beans and tomatoes , fry until you see the tomatoes going soft , add the stock , bring to the boil and simmer for about 10 minutes",
+      "heat the oil in a frying pan large enough to hold the tempeh strips in one layer"
+    ]
+  },
+  {
+    "recipe_id": "rec-41756",
+    "title": "Souper  Easy Sweet   Sour Meatballs",
+    "prep_time_minutes": 150,
+    "matched_ingredients": [
+      "bread",
+      "ground beef",
+      "tomato"
+    ],
+    "instructions": [
+      "mix together beef , bread crumbs , onions and eggs",
+      "form into meatballs",
+      "fry and brown in oil",
+      "drain on paper towel , then roll in cornstarch",
+      "in a sauce pan combine soup , water , sugar , salt , pepper& lemon juice"
+    ]
+  },
+  {
+    "recipe_id": "rec-98930",
+    "title": "Steamed  Chicken Cutlets In Packages",
+    "prep_time_minutes": 35,
+    "matched_ingredients": [
+      "chicken breast",
+      "tomato",
+      "basil"
+    ],
+    "instructions": [
+      "preheat oven to 450f",
+      "rinse the chicken breasts , and either cut or pound the chicken to create cutlets of about equal size",
+      "tear off squares of aluminum foil and place each chicken breast on a square",
+      "slice the tomato and place a slice or two atop of each breast",
+      "drizzle the chicken with the olive oil"
+    ]
+  },
+  {
+    "recipe_id": "rec-62368",
+    "title": "The Best  Chocolate Chip Cheesecake Ever",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "milk",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "preheat oven to 300",
+      "combine cookie crumbs& butter , press firmly on bottom of 9 inch springform pan",
+      "in large mixing bowl beat cream cheese until fluffy , beat in sweetened condensed milk , eggs& vanilla",
+      "in small bowl toss 1 / 2 cup of chocolate chips with flour , stir into cheesecake mixture",
+      "pour into prepared pan"
+    ]
+  },
+  {
+    "recipe_id": "rec-111875",
+    "title": "The Elvis  Smoothie",
+    "prep_time_minutes": 2,
+    "matched_ingredients": [
+      "banana",
+      "milk",
+      "yogurt"
+    ],
+    "instructions": [
+      "place all ingredients in blender",
+      "blend until very smooth",
+      "serve immediately",
+      "for a vegan smoothie , make with soy milk and soy yogurt"
+    ]
+  },
+  {
+    "recipe_id": "rec-42522",
+    "title": "The Man S  Taco Dip",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "mix cream cheese and sour cream until a soft mixture",
+      "add taco seasoning and bean dip",
+      "add 3 / 4 of cheese and pour into a baking dish",
+      "add remaining cheese on top",
+      "bake at 350 deg for 20 to 30 minutes or until golden brown"
+    ]
+  },
+  {
+    "recipe_id": "rec-34930",
+    "title": "The Woiks  Dilly Burgers",
+    "prep_time_minutes": 32,
+    "matched_ingredients": [
+      "dill",
+      "steak",
+      "cheese",
+      "tomato",
+      "lettuce"
+    ],
+    "instructions": [
+      "in a bowl , mix together the ground beef , montreal steak seasoning , bacon crumbles and dill weed",
+      "shape into four burgers",
+      "brush or spray the onion slices with olive oil",
+      "place the burgers and onion slices over medium hot coals",
+      "grill for 8-12 minutes or until burgers are well done and onion is tender , turning once"
+    ]
+  },
+  {
+    "recipe_id": "rec-63793",
+    "title": "Tide Me Over   Indian Chaat  Simple Veggie Salad",
+    "prep_time_minutes": 2,
+    "matched_ingredients": [
+      "cucumber",
+      "yogurt",
+      "tomato"
+    ],
+    "instructions": [
+      "toss everything well in a serving bowl",
+      "grab a fork or large spoon and eat immediately , or refrigerate until hunger strikes , and then eat !",
+      "feel extremely pleased with yourself that you snacked on this instead of that bag of chips you were eyeing",
+      "proceed to eat several helpings of dessert after dinner as reward"
+    ]
+  },
+  {
+    "recipe_id": "rec-61973",
+    "title": "To Your Health  Muffins",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "milk",
+      "corn"
+    ],
+    "instructions": [
+      "blend together in large bowl flour , bran , brown sugar , baking soda , salt , cinnamon , carrots and raisins",
+      "in second bowl , beat buttermilk , oil , egg and vanilla",
+      "add liquid ingredients to dry ingredients and mix just until moistened",
+      "spoon into 12 greased or paper-lined muffin cups",
+      "bake at 375f for 20 minutes"
+    ]
+  },
+  {
+    "recipe_id": "rec-59534",
+    "title": "Twisted American Chop Suey",
+    "prep_time_minutes": 60,
+    "matched_ingredients": [
+      "milk",
+      "mushroom",
+      "corn",
+      "ground beef",
+      "cheese",
+      "tomato"
+    ],
+    "instructions": [
+      "cook noodles according to box , drain and set aside",
+      "brown meat in large skillet , drain fat and add noodles and set aside",
+      "in same skillet , saute onion and garlic in butter until onion is tender",
+      "add to beef and noodle mixture",
+      "stir in all remaining ingredients except cheese and mix well , i mix milk and tomato soup before adding with rest of ingredients"
+    ]
+  },
+  {
+    "recipe_id": "rec-24137",
+    "title": "Voodoo   Calamari Ink  Pasta",
+    "prep_time_minutes": 160,
+    "matched_ingredients": [
+      "parsley",
+      "tomato"
+    ],
+    "instructions": [
+      "separate tentacls and the body of the calamri , then gut them , setting aside the ink sak",
+      "wash calamari under cold water , dice the body into rings , and chop the tentacles",
+      "heat garlic in oil without browning",
+      "add parsley , ground pepper",
+      "cover and let it simmer for 45min"
+    ]
+  },
+  {
+    "recipe_id": "rec-104243",
+    "title": "We Thought It Was A Layer Cake Sandwich",
+    "prep_time_minutes": 330,
+    "matched_ingredients": [
+      "bread",
+      "cream",
+      "turkey",
+      "cream cheese",
+      "radish",
+      "cheese",
+      "lettuce"
+    ],
+    "instructions": [
+      "you will also need: 1 8-inch round cake pan , 3\" deep",
+      "spray 8 inch cake pan with non stick spray",
+      "form the thawed dough into an 8-inch round loaf and press into cake pan",
+      "bake at 350f for 20 to 25 minutes or until bread sounds hollow when tapped",
+      "cool 5 minutes and then remove from pan and cool thoroughly"
+    ]
+  },
+  {
+    "recipe_id": "rec-105069",
+    "title": "Zupa Ze Swiezych Grzybow  Polish Mushroom Soup",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "dill",
+      "cream",
+      "mushroom"
+    ],
+    "instructions": [
+      "wash and coarsely chop mushrooms",
+      "saute over medium-low heat , covered , with lemon juice , butter , onions , and water for 20 minutes",
+      "transfer to a large saucepan , add the broth , and bring to a low simmer",
+      "blend the sour cream with the flour and mix well",
+      "blend in the 1 cup reserved stock until smooth"
+    ]
+  },
+  {
+    "recipe_id": "rec-70099",
+    "title": "1 Asian Noodle Salad",
+    "prep_time_minutes": 26,
+    "matched_ingredients": [
+      "cucumber",
+      "green onions"
+    ],
+    "instructions": [
+      "bring a large pot of water to boil",
+      "add rice noodles and cook one minute , or until just tender",
+      "drain well , then rinse gently in cold water to cool the noodles",
+      "drain again and place in a large bowl with remaining ingredients",
+      "gently toss to combine"
+    ]
+  },
+  {
+    "recipe_id": "rec-144952",
+    "title": "1 French Onion Soup",
+    "prep_time_minutes": 100,
+    "matched_ingredients": [
+      "bread",
+      "cheese"
+    ],
+    "instructions": [
+      "heat the butter and 2 tb olive oil in a large pan until melted",
+      "add the onions and sugar",
+      "cook over medium heat , stirring occasionally until they are \"caramalized\"",
+      "add the flour and stir for about 3 minutes",
+      "add the beef broth , and cook the soup over low-medium heat , partly covered , for about 45 minutes"
+    ]
+  },
+  {
+    "recipe_id": "rec-31835",
+    "title": "1 Squash Dressing",
+    "prep_time_minutes": 50,
+    "matched_ingredients": [
+      "bread",
+      "cream",
+      "corn"
+    ],
+    "instructions": [
+      "mix all together",
+      "put in 2 quart casserole dish",
+      "bake for 30 minutes at 350f",
+      "enjoy !"
+    ]
+  },
+  {
+    "recipe_id": "rec-197013",
+    "title": "10 Can Spaghetti Sauce   Oamc",
+    "prep_time_minutes": 510,
+    "matched_ingredients": [
+      "parsley",
+      "sausage",
+      "tomato",
+      "basil"
+    ],
+    "instructions": [
+      "brown sausage in pan , crumbling with spatula , until no pink remains",
+      "drain and rinse",
+      "put into a 5 quart crockpot",
+      "saute onions and garlic in olive oil until translucent and golden but not brown",
+      "add all the spices and mix well"
+    ]
+  },
+  {
+    "recipe_id": "rec-306168",
+    "title": "412 Broccoli Casserole",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "broccoli",
+      "milk",
+      "cream",
+      "cheese"
+    ],
+    "instructions": [
+      "preheat oven to 350 degrees",
+      "spray a 2 quart baking dish with cooking spray , set aside",
+      "in a large bowl mix together broccoli , soup , one cup of cheese , garlic powder , pepper , salt , milk , 1 cup of french onions , and soy sauce",
+      "pour into baking dish , sprinkle remaining cheese over top",
+      "bake for 25 minutes or until cheese is lightly browned"
+    ]
+  },
+  {
+    "recipe_id": "rec-24514",
+    "title": "1 000 Artichoke Hearts",
+    "prep_time_minutes": 25,
+    "matched_ingredients": [
+      "bread",
+      "artichoke"
+    ],
+    "instructions": [
+      "squeeze as much liquid as possible out of the artichoke hearts and drain them on paper towels",
+      "roll each heart in egg wash , and then roll in breadcrumbs until well-coated",
+      "deep fry for one to two minutes until lightly browned and slightly crispy",
+      "melt butter and garlic in a small , individual saut pan",
+      "saut hearts for two minutes in the garlic butter , basting each heart and taking care not to burn the butter or garlic"
+    ]
+  },
+  {
+    "recipe_id": "rec-116679",
+    "title": "100 Broccoli Casserole",
+    "prep_time_minutes": 50,
+    "matched_ingredients": [
+      "broccoli",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "cook broccoli until tender in the amount of water called for on the package , drain",
+      "mix together soup mix , cream cheese , sour cream and water chestnuts",
+      "add drained broccoli and stir well",
+      "place in lightly buttered casserole dish and top with grated cheese and cracker crums",
+      "bake at 350 for 30-35 minutes or until hot throughout and bubbly"
+    ]
+  },
+  {
+    "recipe_id": "rec-190",
+    "title": "20 000 Prize Winning Chili Con Carne",
+    "prep_time_minutes": 175,
+    "matched_ingredients": [
+      "corn",
+      "tomato"
+    ],
+    "instructions": [
+      "in large saucepan or dutch oven , brown half the meat",
+      "pour off fat",
+      "remove meat",
+      "brown remaining meat",
+      "pour off all fat except 2 tbsps"
+    ]
+  },
+  {
+    "recipe_id": "rec-475785",
+    "title": "2000 Meatloaf",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "bell pepper",
+      "spinach",
+      "cheese"
+    ],
+    "instructions": [
+      "pan fry bacon , and set aside on a paper towel to absorb excess grease",
+      "mince yellow onion , red bell pepper , and add to your mixing bowl",
+      "chop garlic and set aside",
+      "put 1tbsp olive oil into a saut pan , along with chopped garlic , teaspoons white pepper and a pinch of kosher salt",
+      "bring to a medium heat to sweat your garlic"
+    ]
+  },
+  {
+    "recipe_id": "rec-17265",
+    "title": "25 Pumpkin Pie",
+    "prep_time_minutes": 80,
+    "matched_ingredients": [
+      "milk",
+      "cream",
+      "pumpkin"
+    ],
+    "instructions": [
+      "adjust an oven rack to lowest position and heat oven to 400f",
+      "prepare pie crust for blind baking",
+      "bake crust for 15 minutes",
+      "remove parchment from crust , prick any bubbles with a sharp fork and bake shell for 8 to 10 minutes longer , or until bottom just begins to color",
+      "remove crust from oven and brush lightly with egg white while still hot"
+    ]
+  },
+  {
+    "recipe_id": "rec-50662",
+    "title": "25 000 Casserole",
+    "prep_time_minutes": 125,
+    "matched_ingredients": [
+      "celery",
+      "bread",
+      "milk",
+      "cream"
+    ],
+    "instructions": [
+      "coat the meat with 1 / 2 c of flour and the paprika",
+      "brown in vegetable oil",
+      "transfer to a casserole dish",
+      "add can of onions",
+      "combine one can of the chicken soup and one can water"
+    ]
+  },
+  {
+    "recipe_id": "rec-500166",
+    "title": "5 Tacos",
+    "prep_time_minutes": 20,
+    "matched_ingredients": [
+      "corn",
+      "ground beef",
+      "cheese",
+      "tomato",
+      "lettuce"
+    ],
+    "instructions": [
+      "cook meat",
+      "add taco seasoning",
+      "place meat into taco shells / tortillas",
+      "top with tomatoes , onions , lettuce , salsa and cheese",
+      "boil corn cobs 5-7 minutes"
+    ]
+  },
+  {
+    "recipe_id": "rec-501028",
+    "title": "50 Chili   For The Crockpot",
+    "prep_time_minutes": 345,
+    "matched_ingredients": [
+      "bell pepper",
+      "tomato"
+    ],
+    "instructions": [
+      "combine all ingredients in a 7-quart crockpot",
+      "it might be easier to combine in a larger vessel , mix , and then transfer to your crockpot",
+      "cook on \"high\" for 5 hours , or \"low\" for 8 hours",
+      "i typically serve the chili over a bed of whole tostito chips , with a layer of shredded cheese in between"
+    ]
+  },
+  {
+    "recipe_id": "rec-136602",
+    "title": "500 Margarita Bread",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "in a small bowl , combine dates , tequila , orange liqueur , water , lemon and lime zest",
+      "set aside",
+      "in large mixer bowl , beat sugar , shortening and egg until fluffy",
+      "in another bowl , combine flour , soda and salt",
+      "add to creamed mixture alternately with date mixture , using low to medium speed"
+    ]
+  },
+  {
+    "recipe_id": "rec-69190",
+    "title": "Ara S Potato  Oup",
+    "prep_time_minutes": 135,
+    "matched_ingredients": [
+      "celery",
+      "milk",
+      "cream"
+    ],
+    "instructions": [
+      "cook potatoes , onions , celery , and carrots in water until tender",
+      "meanwhile , in other pan , put in milk , butter , cream of chicken , cream of celery , and bullion cubes on low heat",
+      "when potatoes and the vegetables are tender , pour in the milk , butter , the cream of chicken and cream of celery , with the bullion cubes into the pan with the potatoes",
+      "put on medium heat and stir in potato flakes occasionally",
+      "enjoy !"
+    ]
+  },
+  {
+    "recipe_id": "rec-503475",
+    "title": "Blepandekager   Danish   Apple Pancakes",
+    "prep_time_minutes": 50,
+    "matched_ingredients": [
+      "milk",
+      "cream"
+    ],
+    "instructions": [
+      "beat the eggs lightly and add the milk",
+      "combine the flour , sugar and salt",
+      "stir the flour mixture into the egg mixture , stirring in the cup of cream as you mix",
+      "fry the apple slices in butter in a skillet",
+      "preheat oven to 500 degree"
+    ]
+  },
+  {
+    "recipe_id": "rec-522861",
+    "title": "Lplermagrone",
+    "prep_time_minutes": 50,
+    "matched_ingredients": [
+      "milk",
+      "cheese"
+    ],
+    "instructions": [
+      "a variant on the theme: in the swiss canton of nidwalden , aelplermagrone is prepared with equal amounts of macaroni and potatoes",
+      "dried apple slices are traditionally served as a side dish",
+      "bring the milk and one tablespoon of salt to a boil",
+      "add the noodles , reduce the heat , and cook over a low heat until done , stirring occasionally",
+      "the noodles should absorb enough milk so that the dish is still moist"
+    ]
+  },
+  {
+    "recipe_id": "rec-457136",
+    "title": "Lplermagrone  Herdsman S Macaroni",
+    "prep_time_minutes": 40,
+    "matched_ingredients": [
+      "cream",
+      "cheese"
+    ],
+    "instructions": [
+      "heat the oven to 100 c",
+      "boil potatoes in a saucepan without lid for 5 minutes",
+      "add macaroni and cook them al dente",
+      "until the liquid is almost absorbed",
+      "strain and return to pot"
+    ]
+  },
+  {
+    "recipe_id": "rec-455351",
+    "title": "Lplermagronen",
+    "prep_time_minutes": 55,
+    "matched_ingredients": [
+      "milk",
+      "cheese"
+    ],
+    "instructions": [
+      "heat oven to 375f set a large pot of salted water to boil",
+      "heat butter / oil over medium-low heat in a frying pan",
+      "add onions and fry them until golden brown",
+      "add penne and potatoes to the salted water",
+      "stir to make sure pasta doesnt stick together"
+    ]
+  },
+  {
+    "recipe_id": "rec-523359",
+    "title": "Der Wiener Schnitzel Style Chili Dog Sauce",
+    "prep_time_minutes": 55,
+    "matched_ingredients": [
+      "corn",
+      "ground beef",
+      "tomato"
+    ],
+    "instructions": [
+      "in a large size dutch oven or large size deep sauce pan , brown ground beef and ground pork over medium heat , making sure that the meat is well crumbled",
+      "when the meat is completely browned cover saucepan and turn heat to low",
+      "after 5 minutes , remove the ground meat from the heat and drain off most of the fat",
+      "keep some of the fat in the pan for flavor ,",
+      "while the meat is still off the heat , add water and the cornstarch in a medium size mixing bowl"
+    ]
+  },
+  {
+    "recipe_id": "rec-100540",
+    "title": "Almost Grilled  Cheese Sandwich",
+    "prep_time_minutes": 5,
+    "matched_ingredients": [
+      "bread",
+      "cheese"
+    ],
+    "instructions": [
+      "toast the bread slices",
+      "spread one side of each bread slice very lightly with butter",
+      "put cheese slice between buttered sides of bread",
+      "heat in the microwave until cheese starts to melt",
+      "in my oven this takes no more than 15 to 20 seconds"
+    ]
+  },
+  {
+    "recipe_id": "rec-29214",
+    "title": "Anything Goes  Low Fat Mushroom Sauce",
+    "prep_time_minutes": 35,
+    "matched_ingredients": [
+      "milk",
+      "rosemary",
+      "mushroom",
+      "corn",
+      "cheese"
+    ],
+    "instructions": [
+      "in large non-stick skillet , saut mushrooms and garlic in margarine until tender",
+      "add 1 1 / 4 cup broth , rosemary , and thyme",
+      "bring to boil",
+      "cook until reduced by two-thirds",
+      "add 2 / 3 cup broth , sherry or additional broth , teriyaki , and hot pepper sauce"
+    ]
+  },
+  {
+    "recipe_id": "rec-92533",
+    "title": "Atkins Friendly  Cheesecake",
+    "prep_time_minutes": 105,
+    "matched_ingredients": [
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "for the crust:",
+      "preheat oven to 350f",
+      "put 1 1 / 2 cups of almonds in blender and grind to medium / fine texture",
+      "add 1 / 3 cup of vanilla flavored whey protein powder",
+      "add 4 tablespoons of melted butter"
+    ]
+  },
+  {
+    "recipe_id": "rec-42151",
+    "title": "Bar  Cheese",
+    "prep_time_minutes": 35,
+    "matched_ingredients": [
+      "radish",
+      "cheese"
+    ],
+    "instructions": [
+      "in a large sauce pan over low heat , melt the velveeta",
+      "add the jar of horseradish and mix",
+      "allow this to heat on low for 15 minutes , stirring often",
+      "add the mayo , worcestershire , and tabasco",
+      "mix and allow to heat another 10 minutes , stirring often"
+    ]
+  },
+  {
+    "recipe_id": "rec-236184",
+    "title": "Berry Good  French Toast Bake",
+    "prep_time_minutes": 45,
+    "matched_ingredients": [
+      "bread",
+      "milk",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "generously grease 2 1 / 2 quart casserole of rectangular baking dish , 13 x 9",
+      "beat flour , milk , sugar , vanilla , salt , and eggs in a large bowl with a hand beater until smooth",
+      "stir in bread cubes until coated",
+      "pour bread mixture into pan",
+      "top evenly with cream cheese , berries , and nuts"
+    ]
+  },
+  {
+    "recipe_id": "rec-241445",
+    "title": "Better Than A Baked Potato  Soup",
+    "prep_time_minutes": 30,
+    "matched_ingredients": [
+      "celery",
+      "cream",
+      "cheese"
+    ],
+    "instructions": [
+      "peel potatoes and cut into large chunks",
+      "put potatoes in soup pot along with onion , celery , and chicken broth",
+      "if there is not enough broth to cover the veggies , add a little water",
+      "cover , bring to a boil , and let simmer for approximately 20 minutes , until vegetables soften",
+      "if you like thicker soup , drain off some of the liquid"
+    ]
+  },
+  {
+    "recipe_id": "rec-149887",
+    "title": "Better Than Cinnabon  Cinnamon Rolls",
+    "prep_time_minutes": 85,
+    "matched_ingredients": [
+      "milk",
+      "cream",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "combine warm water , sugar and yeast",
+      "set aside",
+      "in microwave , melt butter",
+      "when butter is melted , add milk and warm to take the chill off",
+      "add beaten egg and yeast mixture mix gently and pour into pan of bread machine"
+    ]
+  },
+  {
+    "recipe_id": "rec-112984",
+    "title": "Better Than Spaghetti  Squash Bake",
+    "prep_time_minutes": 70,
+    "matched_ingredients": [
+      "bell pepper",
+      "mozzarella",
+      "mushroom",
+      "asparagus",
+      "cheese"
+    ],
+    "instructions": [
+      "prepare spaghetti squash by piercing the skin with a fork and boiling for approximately 25-30 minutes",
+      "split spaghetti squash lengthwise , spoon out the seeds and use a fork to remove the spaghetti strands from the squash",
+      "snap off the ends of the asparagus and cut into 1\" pieces",
+      "slice mushrooms , red bell pepper , and garlic thinly",
+      "saute all vegetables and garlic on medium-high heat in non-stick skillet until cooked and tender"
+    ]
+  },
+  {
+    "recipe_id": "rec-200148",
+    "title": "Better Than Tofu  Cheesecake",
+    "prep_time_minutes": 90,
+    "matched_ingredients": [
+      "cream",
+      "corn",
+      "cream cheese",
+      "cheese"
+    ],
+    "instructions": [
+      "for crust:",
+      "melt margarine and blend well with graham cracker cumbs and sweetener",
+      "press well into bottom of spring-form pan or round cake pan",
+      "bake at 350f for 10 minutes",
+      "let cool"
+    ]
+  },
+  {
+    "recipe_id": "rec-445026",
+    "title": "Big Easy   Gumbo",
+    "prep_time_minutes": 68,
+    "matched_ingredients": [
+      "celery",
+      "bell pepper",
+      "shrimp",
+      "peas",
+      "sausage"
+    ],
+    "instructions": [
+      "heat oil in a large dutch oven over medium-high heat",
+      "gradually whisk in flour and cook , whisking constantly , 5 to 7 minutes or until flour is chocolate colored",
+      "do not burn mixture",
+      "reduce heat to medium",
+      "stir in onion and next 4 ingredients and cook , stirring constantly , 3 minutes"
+    ]
+  },
+  {
+    "recipe_id": "rec-70611",
+    "title": "Big Mac  Meatloaf",
+    "prep_time_minutes": 60,
+    "matched_ingredients": [
+      "ground beef",
+      "cheese"
+    ],
+    "instructions": [
+      "combine all ingredients except for cheese",
+      "mix well",
+      "take approximately 1 / 2 of meat mix and flatten it out on a sheet of wax paper , sprinkle cheese on top",
+      "take one end of meat and roll to other end like a jelly roll",
+      "place in a cake pan of sorts"
+    ]
+  },
+  {
+    "recipe_id": "rec-273326",
+    "title": "Buckley S  Cajun Salmon Pasta",
+    "prep_time_minutes": 38,
+    "matched_ingredients": [
+      "salmon",
+      "cream",
+      "parsley",
+      "cheese",
+      "basil"
+    ],
+    "instructions": [
+      "for the cream sauce:",
+      "saut minced garlic with butter until garlic is light brown",
+      "add heavy cream , basil , lemon juice , grated cheese blend , & white pepper",
+      "bring to a boil on medium high heat , stirring often",
+      "place on low heat after boiling & salt to taste"
+    ]
+  },
+  {
+    "recipe_id": "rec-310570",
+    "title": "Burek  Or Feta Cheese  Phyllo Pie",
+    "prep_time_minutes": 65,
+    "matched_ingredients": [
+      "cottage cheese",
+      "milk",
+      "cheese",
+      "phyllo dough"
+    ],
+    "instructions": [
+      "first - let me explain the feta",
+      "we have an italian market that sells fresh fruits and veggies etc",
+      "and they have a fresh cheese section",
+      "i always buy a block of french feta cheese",
+      "i use half for this recipe and the rest for omelets etc"
+    ]
+  },
+  {
+    "recipe_id": "rec-318677",
+    "title": "California Roll   Salad",
+    "prep_time_minutes": 12,
+    "matched_ingredients": [
+      "avocado",
+      "cucumber",
+      "lettuce"
+    ],
+    "instructions": [
+      "prepare rice according to directions",
+      "pour rice into medium bowl and toss with 1 tbsp vinegar",
+      "set aside",
+      "thinly slice cucumber and avacado",
+      "break up crabmeat into chunks"
+    ]
+  },
+  {
+    "recipe_id": "rec-269984",
+    "title": "Cancer Curing Matzah Ball Soup",
+    "prep_time_minutes": 195,
+    "matched_ingredients": [
+      "celery",
+      "chicken breast"
+    ],
+    "instructions": [
+      "how to make soup:",
+      "shred cooled chicken breasts and place in stock pot",
+      "cut up celery , onion and baby carrots into bite sized pieces and add to stock pot",
+      "add in 3 of the 32 oz chicken stocks into pot",
+      "fill those containers with water and put in stock pot as well so now you should have 1 and 1 / 2 gallons of fluid in your stock pot and brimming with vegetables"
+    ]
+  },
+  {
+    "recipe_id": "rec-317508",
+    "title": "Cheeeezy  Potatoes",
+    "prep_time_minutes": 65,
+    "matched_ingredients": [
+      "cream",
+      "mushroom",
+      "cheese"
+    ],
+    "instructions": [
+      "in a very large mixing bowl , mix sour cream and soup together",
+      "add potatoes",
+      "add in 1 cup of shredded cheese",
+      "add in poppy seeds",
+      "mix all together"
+    ]
+  },
+  {
+    "recipe_id": "rec-53872",
+    "title": "Cheeseburger  Meatloaf For Lactose Intolerant Cheese",
+    "prep_time_minutes": 70,
+    "matched_ingredients": [
+      "bread",
+      "ground beef",
+      "cheese"
+    ],
+    "instructions": [
+      "preheat oven to 350f",
+      "thaw meat in advance and place in a large mixing bowl",
+      "stir in bread crumbs , sage , coriander , adobo , oregano , pepper and salt",
+      "use hands to mix in eggs , ketchup , soy sauce , soy cheese and red onion divide mixture in half and form into 2 loaves",
+      "place loaves side by side in a medium sized lasagna pan"
+    ]
+  },
+  {
+    "recipe_id": "rec-268942",
+    "title": "Cheesy  Tuna Casserole",
+    "prep_time_minutes": 45,
+    "matched_ingredients": [
+      "celery",
+      "bell pepper",
+      "cream",
+      "mushroom",
+      "cheese"
+    ],
+    "instructions": [
+      "heat oven to 350f",
+      "prepare mac and cheese as directed on the package , except using 3 / 4 cup milk",
+      "cook onion , green or red pepper and celery in butter until tender",
+      "add to the prepared mac and cheese the remaining ingredients",
+      "mix well"
     ]
   }
 ]

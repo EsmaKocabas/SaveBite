@@ -1,0 +1,13 @@
+{
+  "name": "savebite-food-waste-prevention",
+  "version": "1.0.0",
+  "description": "Gıda İsrafı ile Mücadele ve Sürdürülebilirlik Platformu",
+  "main": "src/db/migrateCloud.js",
+  "scripts": {
+    "migrate": "node src/db/migrateCloud.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "pg": "^8.23.1"
+  }
+}
