@@ -29,11 +29,11 @@ async function migrateToNeon() {
     await client.query(schemaSql);
     console.log('Tablolar ve indeksler hazır.');
 
-    // 2. Tohum Verileri Yükle
-    console.log('Tohum verileri yükleniyor (seed.sql)...');
+    // 2. Verileri Yükle
+    console.log('Veriler yükleniyor (seed.sql)...');
     const seedSql = fs.readFileSync(path.join(__dirname, 'seed.sql'), 'utf-8');
     await client.query(seedSql);
-    console.log('Tohum verileri hazır.');
+    console.log('Veriler hazır.');
 
     // 3. Doğrulama ve Raporlama
     const catCount = await client.query('SELECT COUNT(*) FROM categories;');
@@ -43,7 +43,7 @@ async function migrateToNeon() {
 
     console.log('\nAktarım tamamlandı:');
     console.log('- Kategori sayısı: ' + catCount.rows[0].count);
-    console.log('- Kiler ürünü sayısı: ' + pantryCount.rows[0].count);
+    console.log('- Depo ürünü sayısı: ' + pantryCount.rows[0].count);
     console.log('- Tarif sayısı: ' + recipeCount.rows[0].count);
     console.log('- Tarif malzemesi sayısı: ' + ingCount.rows[0].count + '\n');
 

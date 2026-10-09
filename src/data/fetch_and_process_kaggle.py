@@ -1,6 +1,6 @@
 """
 Kaggle Food.com ve USDA FoodKeeper veri setlerinden dinamik veri işleme boru hattı.
-Tüm kiler ve tarif verileri doğrudan Kaggle'dan indirilen veri setlerinden okunur.
+Tüm depo ve tarif verileri doğrudan Kaggle'dan indirilen veri setlerinden okunur.
 """
 
 import os
@@ -214,7 +214,7 @@ def parse_foodkeeper_dataset():
 def build_pantry_seed_from_kaggle(today, target_count=105):
     """
     Kaggle FoodKeeper veri setinden dinamik olarak okunan ürünlerle
-    evsel kiler envanterini oluşturur. Kalan günleri hesaplar.
+    evsel depo envanterini oluşturur. Kalan günleri hesaplar.
     """
     products = parse_foodkeeper_dataset()
 
@@ -278,10 +278,6 @@ def build_pantry_seed_from_kaggle(today, target_count=105):
 
 
 def match_rescue_recipes(pantry_seed, target_count=100):
-    """
-    Food.com veri setini (RAW_recipes.csv) parça parça (chunk) okuyarak
-    kilerdeki acil gıdaları kurtaran gerçek tarifleri dinamik olarak filtreler.
-    """
     recipes_csv = os.path.join(DOWNLOAD_DIR, "RAW_recipes.csv")
     if not os.path.exists(recipes_csv):
         raise FileNotFoundError(f"Tarif veri seti bulunamadı: {recipes_csv}")
