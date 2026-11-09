@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaveBite - Gıda İsrafı ile Mücadele & Sıfır Atık Platformu</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .tab-active {
+      border-bottom: 3px solid #10b981;
+      color: #059669;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+
+  <!-- Üst Bar (Header) -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold text-xl shadow-md">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+            SaveBite <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-semibold">MVC Backend v1.0</span>
+          </h1>
+          <p class="text-xs text-slate-500">PostgreSQL (Neon DB) & Express.js Canlı Yönetim Paneli</p>
+        </div>
+      </div>
+
+      <!-- Kullanıcı & Durum Paneli -->
+      <div class="flex items-center space-x-4">
+        <div id="connectionStatus" class="flex items-center space-x-2 text-xs bg-slate-100 px-3 py-1.5 rounded-full font-medium text-slate-600">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" id="statusDot"></span>
+          <span id="statusText">Sunucu Kontrol Ediliyor...</span>
+        </div>
+
+        <div id="userBadge" class="hidden items-center space-x-3 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+          <div class="w-7 h-7 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs font-bold" id="userInitial">
+            U
+          </div>
+          <span class="text-xs font-semibold text-emerald-900" id="userNameLabel">Kullanıcı</span>
+          <button onclick="logout()" class="text-xs text-red-500 hover:text-red-700 ml-2" title="Çıkış Yap">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sekmeler (Tabs) -->
+    <nav class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium border-t border-slate-100 overflow-x-auto">
+      <button onclick="switchTab('tab-auth')" id="btn-tab-auth" class="py-3 px-1 border-b-2 border-transparent hover:text-emerald-600 flex items-center gap-2">
+        <i class="fa-solid fa-user-shield"></i> 1. Giriş / Kayıt (Auth)
+      </button>
+      <button onclick="switchTab('tab-products')" id="btn-tab-products" class="py-3 px-1 border-b-2 border-transparent hover:text-emerald-600 flex items-center gap-2">
+        <i class="fa-solid fa-boxes-stacked"></i> 2. Kilerim (CRUD)
+      </button>
+      <button onclick="switchTab('tab-status')" id="btn-tab-status" class="py-3 px-1 border-b-2 border-transparent hover:text-emerald-600 flex items-center gap-2">
+        <i class="fa-solid fa-traffic-light"></i> 3. SKT Risk Radarı
+      </button>
+      <button onclick="switchTab('tab-search')" id="btn-tab-search" class="py-3 px-1 border-b-2 border-transparent hover:text-emerald-600 flex items-center gap-2">
+        <i class="fa-solid fa-magnifying-glass"></i> 4. Kaggle Dış Tarif Arama
+      </button>
+      <button onclick="switchTab('tab-rescue')" id="btn-tab-rescue" class="py-3 px-1 border-b-2 border-transparent hover:text-emerald-600 flex items-center gap-2">
+        <i class="fa-solid fa-utensils"></i> 5. Sıfır Atık Tarif Algoritması
+      </button>
+    </nav>
+  </header>
+
+  <!-- Ana İçerik Konteyneri -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+
+    <!-- ================= GÖREV 1: AUTH SEKMESİ ================= -->
+    <section id="tab-auth" class="space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg"><i class="fa-solid fa-shield-halved text-lg"></i></div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Görev 1: Kullanıcı Giriş & Kayıt (JWT Güvenliği)</h2>
+            <p class="text-xs text-slate-500">PostgreSQL 'users' tablosu üzerinde bcryptjs şifreleme ve JWT doğrulaması çalışır.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Kayıt Ol Formu -->
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-user-plus text-emerald-600"></i> Yeni Hesap Oluştur (POST /api/auth/register)
+            </h3>
+            <form onsubmit="handleRegister(event)" class="space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Ad Soyad</label>
+                <input id="regName" type="text" required placeholder="Esma Kocabaş" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">E-Posta</label>
+                <input id="regEmail" type="email" required placeholder="ornek@savebite.com" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Şifre (Min 6 karakter)</label>
+                <input id="regPass" type="password" required minlength="6" placeholder="******" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+              </div>
+              <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition">
+                Kayıt Ol ve Token Al
+              </button>
+            </form>
+          </div>
+
+          <!-- Giriş Yap Formu -->
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-right-to-bracket text-blue-600"></i> Mevcut Hesapla Giriş Yap (POST /api/auth/login)
+            </h3>
+            <form onsubmit="handleLogin(event)" class="space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">E-Posta</label>
+                <input id="loginEmail" type="email" required placeholder="ornek@savebite.com" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Şifre</label>
+                <input id="loginPass" type="password" required placeholder="******" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+              </div>
+              <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition">
+                Giriş Yap
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Aktif JWT Token ve Profil Kartı -->
+        <div id="tokenCard" class="mt-6 bg-slate-900 text-slate-100 p-4 rounded-xl text-xs font-mono">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-emerald-400 font-bold uppercase"><i class="fa-solid fa-key"></i> Aktif JWT Token:</span>
+            <span id="tokenStatusText" class="text-slate-400">Giriş Yapılmadı (Misafir Modu)</span>
+          </div>
+          <div id="tokenDisplay" class="break-all text-slate-300 bg-slate-950 p-3 rounded border border-slate-800 max-h-24 overflow-y-auto">
+            Henüz token yok. Lütfen yukarıdan kayıt olun veya giriş yapın.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GÖREV 2: ÜRÜN CRUD SEKMESİ ================= -->
+    <section id="tab-products" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="p-2 bg-blue-100 text-blue-700 rounded-lg"><i class="fa-solid fa-boxes-stacked text-lg"></i></div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900">Görev 2: Kilerim & Ürün Yönetimi (CRUD API)</h2>
+              <p class="text-xs text-slate-500">PostgreSQL 'pantry_items' tablosuna ekleme, silme, güncelleme ve listeleme.</p>
+            </div>
+          </div>
+          <button onclick="toggleProductModal(true)" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm transition">
+            <i class="fa-solid fa-plus"></i> Yeni Ürün Ekle
+          </button>
+        </div>
+
+        <!-- Ürünler Listesi -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-slate-600">
+            <thead class="bg-slate-50 text-slate-700 font-semibold text-xs uppercase border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-4">Ürün Adı</th>
+                <th class="py-3 px-4">Kategori</th>
+                <th class="py-3 px-4">Miktar</th>
+                <th class="py-3 px-4">Son Tüketim (SKT)</th>
+                <th class="py-3 px-4">Kalan Gün</th>
+                <th class="py-3 px-4">Durum</th>
+                <th class="py-3 px-4 text-right">İşlemler</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody" class="divide-y divide-slate-100">
+              <tr>
+                <td colspan="7" class="text-center py-6 text-slate-400">Ürünler veritabanından yükleniyor...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GÖREV 3: SKT RİSK RADARI ================= -->
+    <section id="tab-status" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-2 bg-amber-100 text-amber-700 rounded-lg"><i class="fa-solid fa-traffic-light text-lg"></i></div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Görev 3: Gıdaların SKT ve Kırmızı/Sarı/Yeşil Durum Radarı</h2>
+            <p class="text-xs text-slate-500">GET /api/products/status uç noktası üzerinden anlık kalan gün ve dinamik renk kodlaması.</p>
+          </div>
+        </div>
+
+        <!-- Özet Sayaç Kartları -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+            <div class="text-xs text-slate-500 font-medium">Toplam Depo Ürünü</div>
+            <div id="statTotal" class="text-2xl font-black text-slate-800 mt-1">0</div>
+          </div>
+          <div class="bg-red-50 border border-red-200 p-4 rounded-xl">
+            <div class="text-xs text-red-600 font-bold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-red-500"></span> 🔴 Tehlikede (0-2 Gün)
+            </div>
+            <div id="statRed" class="text-2xl font-black text-red-600 mt-1">0</div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl">
+            <div class="text-xs text-amber-600 font-bold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span> 🟡 Yaklaşıyor (3-7 Gün)
+            </div>
+            <div id="statYellow" class="text-2xl font-black text-amber-600 mt-1">0</div>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+            <div class="text-xs text-emerald-600 font-bold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 🟢 Taze (7+ Gün)
+            </div>
+            <div id="statGreen" class="text-2xl font-black text-emerald-600 mt-1">0</div>
+          </div>
+        </div>
+
+        <!-- Filtreleme Butonları -->
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xs font-semibold text-slate-500">Filtrele:</span>
+          <button onclick="loadProductStatus('')" class="text-xs px-3 py-1.5 bg-slate-200 hover:bg-slate-300 font-semibold rounded-lg">Tümü</button>
+          <button onclick="loadProductStatus('RED')" class="text-xs px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 font-semibold rounded-lg">Kırmızı (Acil)</button>
+          <button onclick="loadProductStatus('YELLOW')" class="text-xs px-3 py-1.5 bg-amber-100 text-amber-700 hover:bg-amber-200 font-semibold rounded-lg">Sarı (Yaklaşıyor)</button>
+          <button onclick="loadProductStatus('GREEN')" class="text-xs px-3 py-1.5 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 font-semibold rounded-lg">Yeşil (Taze)</button>
+        </div>
+
+        <!-- Kart Grid Görünümü -->
+        <div id="statusCardsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dinamik Kartlar -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GÖREV 4: KAGGLE TARİF ARAMA ================= -->
+    <section id="tab-search" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-2 bg-indigo-100 text-indigo-700 rounded-lg"><i class="fa-solid fa-database text-lg"></i></div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Görev 4: Kaggle Veri API Servisi (100 Tarif, 219 Malzeme)</h2>
+            <p class="text-xs text-slate-500">Neon DB 'recipes' ve 'recipe_ingredients' tablolarında ILIKE aramaları.</p>
+          </div>
+        </div>
+
+        <!-- Arama Çubuğu -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-6">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-sm"></i>
+            <input id="recipeSearchInput" type="text" placeholder="Malzeme veya tarif adı ara (örn: chicken, beef, bacon, soup...)" 
+                   onkeyup="if(event.key === 'Enter') handleSearchRecipes()"
+                   class="w-full pl-10 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
+          </div>
+          <button onclick="handleSearchRecipes()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition">
+            Sorgula
+          </button>
+        </div>
+
+        <div id="recipeSearchResultsCount" class="text-xs text-slate-500 mb-3 font-medium"></div>
+
+        <!-- Tarif Kartları -->
+        <div id="recipesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Arama sonuçları buraya eklenecek -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GÖREV 5: SIFIR ATIK TARİF MOTORU ================= -->
+    <section id="tab-rescue" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg"><i class="fa-solid fa-seedling text-lg"></i></div>
+            <div>
+              <h2 class="text-lg font-bold text-slate-900">Görev 5: Acil Malzemeleri Kurtaran Sıfır Atık Tarif Algoritması</h2>
+              <p class="text-xs text-slate-500">Kilerdeki RED ve YELLOW gıdaları önceliklendirip kurtarılacak miktarları hesaplar.</p>
+            </div>
+          </div>
+          <button onclick="runRescueAlgorithm()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-md transition">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Kurtarma Motorunu Çalıştır (POST /api/recipes/rescue)
+          </button>
+        </div>
+
+        <!-- Acil Kurtarılacaklar Paneli -->
+        <div id="urgentSummaryBox" class="hidden mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
+          <h3 class="text-sm font-bold text-amber-900 mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600"></i> Kilerinizdeki Acil Durum Tüketim Listesi:
+          </h3>
+          <div id="urgentItemsList" class="flex flex-wrap gap-2 text-xs"></div>
+        </div>
+
+        <!-- Kurtarma Algoritması Sonuçları -->
+        <div id="rescueResults" class="space-y-4">
+          <div class="text-center py-12 text-slate-400">
+            <i class="fa-solid fa-utensils text-4xl mb-3 text-slate-300"></i>
+            <p class="text-sm">Bozulmaya yakın acil gıdalarınızı kurtarmak için yukarıdaki butona tıklayın.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Ürün Ekleme / Güncelleme Modal'ı -->
+  <div id="productModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="modalTitle" class="font-bold text-base text-slate-900">Yeni Ürün Ekle</h3>
+        <button onclick="toggleProductModal(false)" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveProduct(event)" class="space-y-3">
+        <input type="hidden" id="editProductId">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Ürün Adı</label>
+          <input id="prodName" type="text" required placeholder="Tavuk Göğsü, Süt, Domates..." class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Kategori</label>
+          <select id="prodCategory" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+            <option value="Et, Tavuk & Balık">Et, Tavuk & Balık</option>
+            <option value="Süt & Süt Ürünleri">Süt & Süt Ürünleri</option>
+            <option value="Sebze & Meyve">Sebze & Meyve</option>
+            <option value="Bakliyat & Kuru Gıda">Bakliyat & Kuru Gıda</option>
+            <option value="Kahvaltılık & Şarküteri">Kahvaltılık & Şarküteri</option>
+            <option value="Ekmek & Unlu Mamuller">Ekmek & Unlu Mamuller</option>
+            <option value="Temel Gıda">Temel Gıda</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Miktar</label>
+            <input id="prodQuantity" type="number" step="0.1" required value="1" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Birim</label>
+            <input id="prodUnit" type="text" required value="adet" placeholder="gram, ml, adet" class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Son Kullanma Tarihi (SKT)</label>
+          <input id="prodExpDate" type="date" required class="w-full text-sm px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="toggleProductModal(false)" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-lg">İptal</button>
+          <button type="submit" class="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Kodları (API Entegrasyonu) -->
+  <script>
+    const API_BASE = window.location.origin;
+    let currentToken = localStorage.getItem('savebite_token') || '';
+    let currentUser = JSON.parse(localStorage.getItem('savebite_user') || 'null');
+
+    // Sayfa Yüklendiğinde
+    window.addEventListener('DOMContentLoaded', () => {
+      checkServerHealth();
+      updateAuthUI();
+      switchTab('tab-products');
+    });
+
+    // Sekme Değiştirme
+    function switchTab(tabId) {
+      document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+      document.querySelectorAll('nav > button').forEach(btn => btn.classList.remove('tab-active'));
+
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      const btn = document.getElementById(`btn-${tabId}`);
+      if (btn) btn.classList.add('tab-active');
+
+      if (tabId === 'tab-products') loadProducts();
+      if (tabId === 'tab-status') loadProductStatus();
+      if (tabId === 'tab-search') handleSearchRecipes();
+      if (tabId === 'tab-rescue') runRescueAlgorithm();
+    }
+
+    // Sağlık Kontrolü
+    async function checkServerHealth() {
+      const dot = document.getElementById('statusDot');
+      const text = document.getElementById('statusText');
+      try {
+        const res = await fetch(`${API_BASE}/health`);
+        const data = await res.json();
+        if (data.status === 'OK') {
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
+          text.textContent = 'Neon DB Bağlı (Canlı)';
+        }
+      } catch (err) {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-red-500';
+        text.textContent = 'Sunucu Bağlantısı Yok';
+      }
+    }
+
+    // Auth Arayüzünü Güncelle
+    function updateAuthUI() {
+      const tokenDisplay = document.getElementById('tokenDisplay');
+      const tokenStatusText = document.getElementById('tokenStatusText');
+      const userBadge = document.getElementById('userBadge');
+      const userInitial = document.getElementById('userInitial');
+      const userNameLabel = document.getElementById('userNameLabel');
+
+      if (currentToken && currentUser) {
+        tokenDisplay.textContent = currentToken;
+        tokenStatusText.textContent = `${currentUser.full_name} (${currentUser.email})`;
+        tokenStatusText.className = 'text-emerald-400 font-semibold';
+        userBadge.classList.remove('hidden');
+        userBadge.classList.add('flex');
+        userInitial.textContent = (currentUser.full_name || 'U')[0].toUpperCase();
+        userNameLabel.textContent = currentUser.full_name;
+      } else {
+        tokenDisplay.textContent = 'Henüz token yok. Lütfen yukarıdan kayıt olun veya giriş yapın.';
+        tokenStatusText.textContent = 'Giriş Yapılmadı (Misafir Modu)';
+        tokenStatusText.className = 'text-slate-400';
+        userBadge.classList.add('hidden');
+        userBadge.classList.remove('flex');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('savebite_token');
+      localStorage.removeItem('savebite_user');
+      currentToken = '';
+      currentUser = null;
+      updateAuthUI();
+      loadProducts();
+    }
+
+    // GÖREV 1: Kayıt
+    async function handleRegister(e) {
+      e.preventDefault();
+      const full_name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPass').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ full_name, email, password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          alert('Kayıt başarılı! Token kaydedildi.');
+          currentToken = data.token;
+          currentUser = data.user;
+          localStorage.setItem('savebite_token', currentToken);
+          localStorage.setItem('savebite_user', JSON.stringify(currentUser));
+          updateAuthUI();
+          switchTab('tab-products');
+        } else {
+          alert('Kayıt Hatası: ' + data.message);
+        }
+      } catch (err) {
+        alert('İstek gönderilemedi: ' + err.message);
+      }
+    }
+
+    // GÖREV 1: Giriş
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPass').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          alert('Giriş başarılı!');
+          currentToken = data.token;
+          currentUser = data.user;
+          localStorage.setItem('savebite_token', currentToken);
+          localStorage.setItem('savebite_user', JSON.stringify(currentUser));
+          updateAuthUI();
+          switchTab('tab-products');
+        } else {
+          alert('Giriş Hatası: ' + data.message);
+        }
+      } catch (err) {
+        alert('İstek gönderilemedi: ' + err.message);
+      }
+    }
+
+    // GÖREV 2: Ürünleri Listele
+    async function loadProducts() {
+      const tbody = document.getElementById('productsTableBody');
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center py-6 text-slate-400"><i class="fa-solid fa-spinner animate-spin"></i> Veritabanından yükleniyor...</td></tr>';
+
+      try {
+        const headers = {};
+        if (currentToken) headers['Authorization'] = `Bearer ${currentToken}`;
+
+        const res = await fetch(`${API_BASE}/api/products`, { headers });
+        const data = await res.json();
+
+        if (res.status === 401) {
+          tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-500">
+            <p class="font-semibold text-slate-700 mb-1">Giriş Yapılmadı</p>
+            <p class="text-xs mb-3">Kiler ürünlerinizi görmek ve yönetmek için lütfen Auth sekmesinden giriş yapın.</p>
+            <button onclick="switchTab('tab-auth')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-semibold">Giriş Yap</button>
+          </td></tr>`;
+          return;
+        }
+
+        if (data.success && data.data.length > 0) {
+          tbody.innerHTML = data.data.map(p => `
+            <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+              <td class="py-3 px-4 font-semibold text-slate-800">${p.name}</td>
+              <td class="py-3 px-4 text-xs text-slate-500">${p.category}</td>
+              <td class="py-3 px-4 font-medium">${p.quantity} ${p.unit}</td>
+              <td class="py-3 px-4 text-xs">${p.expiration_date ? p.expiration_date.split('T')[0] : '-'}</td>
+              <td class="py-3 px-4 font-bold ${p.days_remaining <= 2 ? 'text-red-600' : (p.days_remaining <= 7 ? 'text-amber-600' : 'text-emerald-600')}">
+                ${p.days_remaining <= 0 ? 'Doldu (' + p.days_remaining + ' gün)' : p.days_remaining + ' gün'}
+              </td>
+              <td class="py-3 px-4">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold" 
+                      style="background-color: ${p.statusColor || '#10B981'}20; color: ${p.statusColor || '#10B981'};">
+                  <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${p.statusColor || '#10B981'};"></span>
+                  ${p.status} (${p.statusLabel || ''})
+                </span>
+              </td>
+              <td class="py-3 px-4 text-right space-x-2">
+                <button onclick="editProduct('${p.id}', '${p.name.replace(/'/g, "\\'")}', '${p.category}', ${p.quantity}, '${p.unit}', '${(p.expiration_date||'').split('T')[0]}')" 
+                        class="text-blue-600 hover:text-blue-800 text-xs font-semibold">Düzenle</button>
+                <button onclick="deleteProduct('${p.id}')" class="text-red-600 hover:text-red-800 text-xs font-semibold">Sil</button>
+              </td>
+            </tr>
+          `).join('');
+        } else {
+          tbody.innerHTML = '<tr><td colspan="7" class="text-center py-6 text-slate-400">Kilerde henüz ürün bulunmuyor.</td></tr>';
+        }
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-red-500">Hata: ${err.message}</td></tr>`;
+      }
+    }
+
+    // GÖREV 2: Ürün Ekle / Düzenle
+    function toggleProductModal(show) {
+      const modal = document.getElementById('productModal');
+      if (show) {
+        document.getElementById('editProductId').value = '';
+        document.getElementById('prodName').value = '';
+        document.getElementById('prodQuantity').value = '1';
+        document.getElementById('prodUnit').value = 'adet';
+        document.getElementById('prodExpDate').value = new Date().toISOString().split('T')[0];
+        document.getElementById('modalTitle').textContent = 'Yeni Ürün Ekle';
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function editProduct(id, name, cat, qty, unit, exp) {
+      document.getElementById('editProductId').value = id;
+      document.getElementById('prodName').value = name;
+      document.getElementById('prodCategory').value = cat;
+      document.getElementById('prodQuantity').value = qty;
+      document.getElementById('prodUnit').value = unit;
+      document.getElementById('prodExpDate').value = exp;
+      document.getElementById('modalTitle').textContent = 'Ürünü Güncelle';
+      document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    async function handleSaveProduct(e) {
+      e.preventDefault();
+      const id = document.getElementById('editProductId').value;
+      const name = document.getElementById('prodName').value;
+      const category = document.getElementById('prodCategory').value;
+      const quantity = parseFloat(document.getElementById('prodQuantity').value);
+      const unit = document.getElementById('prodUnit').value;
+      const expiration_date = document.getElementById('prodExpDate').value;
+
+      const url = id ? `${API_BASE}/api/products/${id}` : `${API_BASE}/api/products`;
+      const method = id ? 'PUT' : 'POST';
+
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentToken}`
+          },
+          body: JSON.stringify({ name, category, quantity, unit, expiration_date })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          toggleProductModal(false);
+          loadProducts();
+          if (!document.getElementById('tab-status').classList.contains('hidden')) {
+            loadProductStatus();
+          }
+        } else {
+          alert('Hata: ' + data.message);
+        }
+      } catch (err) {
+        alert('İşlem başarısız: ' + err.message);
+      }
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm('Bu ürünü kilerden silmek istediğinize emin misiniz?')) return;
+      try {
+        const res = await fetch(`${API_BASE}/api/products/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${currentToken}` }
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          loadProducts();
+        } else {
+          alert('Silinemedi: ' + data.message);
+        }
+      } catch (err) {
+        alert('Hata: ' + err.message);
+      }
+    }
+
+    // GÖREV 3: SKT Durum Radarı
+    async function loadProductStatus(filterStatus = '') {
+      const grid = document.getElementById('statusCardsGrid');
+      grid.innerHTML = '<div class="col-span-3 text-center py-6 text-slate-400"><i class="fa-solid fa-spinner animate-spin"></i> Risk durumları hesaplanıyor...</div>';
+
+      try {
+        const url = filterStatus ? `${API_BASE}/api/products/status?status=${filterStatus}` : `${API_BASE}/api/products/status`;
+        const headers = {};
+        if (currentToken) headers['Authorization'] = `Bearer ${currentToken}`;
+
+        const res = await fetch(url, { headers });
+        const data = await res.json();
+
+        if (res.status === 401) {
+          grid.innerHTML = `<div class="col-span-3 text-center py-8 text-slate-500">
+            <p class="font-semibold text-slate-700">Giriş Yapılması Gerekiyor</p>
+            <p class="text-xs mb-3">SKT durum radarına erişmek için lütfen giriş yapın.</p>
+            <button onclick="switchTab('tab-auth')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-semibold">Giriş Yap</button>
+          </div>`;
+          return;
+        }
+
+        if (data.success) {
+          document.getElementById('statTotal').textContent = data.summary.total;
+          document.getElementById('statRed').textContent = data.summary.red_critical;
+          document.getElementById('statYellow').textContent = data.summary.yellow_warning;
+          document.getElementById('statGreen').textContent = data.summary.green_safe;
+
+          if (data.data.length === 0) {
+            grid.innerHTML = '<div class="col-span-3 text-center py-6 text-slate-400">Bu filtreye uygun ürün bulunamadı.</div>';
+            return;
+          }
+
+          grid.innerHTML = data.data.map(item => `
+            <div class="bg-white p-4 rounded-xl border-l-4 shadow-sm hover:shadow-md transition" style="border-left-color: ${item.status_color}; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+              <div class="flex justify-between items-start mb-2">
+                <span class="font-bold text-slate-800 text-base">${item.name}</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background-color: ${item.status_color}20; color: ${item.status_color};">
+                  ${item.status}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 mb-3">${item.category} • ${item.quantity} ${item.unit}</p>
+              <div class="flex justify-between items-center text-xs pt-2 border-t border-slate-100">
+                <span class="text-slate-500">SKT: ${item.expiration_date ? item.expiration_date.split('T')[0] : '-'}</span>
+                <span class="font-extrabold" style="color: ${item.status_color};">
+                  ${item.days_remaining <= 0 ? 'Süresi Doldu!' : item.days_remaining + ' gün kaldı'}
+                </span>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        grid.innerHTML = `<div class="col-span-3 text-center py-6 text-red-500">Hata: ${err.message}</div>`;
+      }
+    }
+
+    // GÖREV 4: Kaggle Tarif Arama
+    async function handleSearchRecipes() {
+      const q = document.getElementById('recipeSearchInput').value;
+      const grid = document.getElementById('recipesGrid');
+      const countEl = document.getElementById('recipeSearchResultsCount');
+
+      grid.innerHTML = '<div class="col-span-3 text-center py-6 text-slate-400"><i class="fa-solid fa-spinner animate-spin"></i> Kaggle veritabanından tarifler taranıyor...</div>';
+
+      try {
+        const url = q ? `${API_BASE}/api/recipes/search?q=${encodeURIComponent(q)}` : `${API_BASE}/api/recipes/search?limit=12`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.success) {
+          countEl.textContent = `Toplam ${data.pagination.totalItems} tarif bulundu (Gösterilen: ${data.data.length})`;
+
+          if (data.data.length === 0) {
+            grid.innerHTML = '<div class="col-span-3 text-center py-6 text-slate-400">Aradığınız kriterlere uygun tarif bulunamadı.</div>';
+            return;
+          }
+
+          grid.innerHTML = data.data.map(r => `
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-300 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-2 mb-2">
+                  <h3 class="font-bold text-slate-900 text-sm leading-tight">${r.title}</h3>
+                  <span class="text-xs font-semibold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full whitespace-nowrap">
+                    <i class="fa-regular fa-clock"></i> ${r.prep_time_minutes} dk
+                  </span>
+                </div>
+                <div class="mt-3">
+                  <span class="text-xs font-semibold text-slate-600 block mb-1">Eşleşen Kaggle Malzemeleri:</span>
+                  <div class="flex flex-wrap gap-1">
+                    ${(r.matched_ingredients || []).map(ing => `
+                      <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-medium">${ing}</span>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100">
+                <span class="text-xs text-slate-500 font-semibold block mb-1">İlk Yapılış Adımı:</span>
+                <p class="text-xs text-slate-600 italic line-clamp-2">"${(r.instructions && r.instructions[0]) || 'Adım bilgisi mevcut değil.'}"</p>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        grid.innerHTML = `<div class="col-span-3 text-center py-6 text-red-500">Hata: ${err.message}</div>`;
+      }
+    }
+
+    // GÖREV 5: Sıfır Atık Tarif Algoritması
+    async function runRescueAlgorithm() {
+      const container = document.getElementById('rescueResults');
+      const urgentBox = document.getElementById('urgentSummaryBox');
+      const urgentList = document.getElementById('urgentItemsList');
+
+      container.innerHTML = '<div class="text-center py-8 text-slate-400"><i class="fa-solid fa-spinner animate-spin text-2xl mb-2 text-emerald-600"></i><p class="text-xs font-semibold">Sıfır Atık Motoru kilerdeki riskli ürünleri Kaggle tarifleriyle eşleştiriyor...</p></div>';
+
+      try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (currentToken) headers['Authorization'] = `Bearer ${currentToken}`;
+
+        const res = await fetch(`${API_BASE}/api/recipes/rescue`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ maxResults: 10 })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          // Acil kiler ürünleri özeti
+          if (data.urgentPantrySummary) {
+            urgentBox.classList.remove('hidden');
+            const redItems = data.urgentPantrySummary.redCriticalItems || [];
+            const yellowItems = data.urgentPantrySummary.yellowWarningItems || [];
+
+            urgentList.innerHTML = [
+              ...redItems.map(i => `<span class="bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded-full">🔴 ${i.name} (${i.quantity} - ${i.daysRemaining} gün)</span>`),
+              ...yellowItems.map(i => `<span class="bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-full">🟡 ${i.name} (${i.quantity} - ${i.daysRemaining} gün)</span>`)
+            ].join('');
+          }
+
+          if (data.recipes.length === 0) {
+            container.innerHTML = `
+              <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center text-emerald-900">
+                <i class="fa-solid fa-circle-check text-3xl mb-2 text-emerald-600"></i>
+                <p class="font-bold text-sm">${data.message || 'Acil kurtarılacak malzeme bulunamadı.'}</p>
+              </div>`;
+            return;
+          }
+
+          container.innerHTML = data.recipes.map((r, idx) => `
+            <div class="bg-white p-5 rounded-2xl border-2 ${idx === 0 ? 'border-emerald-500 shadow-md' : 'border-slate-200'} transition flex flex-col md:flex-row justify-between gap-6">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+                    #${idx + 1}
+                  </span>
+                  <h3 class="text-base font-extrabold text-slate-900">${r.title}</h3>
+                  <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md font-semibold">
+                    <i class="fa-regular fa-clock"></i> ${r.prepTimeMinutes} dk
+                  </span>
+                </div>
+
+                <!-- Kurtarılan Malzemeler Rozetleri -->
+                <div class="mt-3">
+                  <span class="text-xs font-bold text-slate-700 block mb-1">Kurtarılan Malzemeler (Deponuzdan):</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    ${r.rescuedItems.map(item => `
+                      <span class="text-xs px-2.5 py-1 rounded-lg font-bold flex items-center gap-1 ${item.status === 'RED' ? 'bg-red-100 text-red-700 border border-red-200' : 'bg-amber-100 text-amber-700 border border-amber-200'}">
+                        ${item.status === 'RED' ? '🔴' : '🟡'} ${item.ingredient} (${item.rescuedQuantity} ${item.unit})
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- Eksik Malzemeler -->
+                ${r.missingIngredients.length > 0 ? `
+                  <div class="mt-2 text-xs text-slate-500">
+                    <span class="font-semibold text-slate-600">Evde Olmayanlar:</span> ${r.missingIngredients.join(', ')}
+                  </div>
+                ` : ''}
+
+                <!-- Yapılış Adımları -->
+                <div class="mt-3 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs">
+                  <span class="font-bold text-slate-700 block mb-1">Tarif Talimatı:</span>
+                  <ol class="list-decimal list-inside space-y-1 text-slate-600">
+                    ${(r.instructions || []).slice(0, 3).map(step => `<li>${step}</li>`).join('')}
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Kurtarma Puanı ve Miktar Kartı -->
+              <div class="md:w-56 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-center items-center text-center">
+                <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Kurtarma Skoru</div>
+                <div class="text-3xl font-black text-emerald-600 mb-2">${r.rescueScore} <span class="text-xs font-medium text-slate-400">puan</span></div>
+                
+                <div class="w-full bg-white p-2.5 rounded-lg border border-slate-200 text-xs space-y-1">
+                  <div class="text-slate-500 font-medium">Kurtarılan Gıda:</div>
+                  <div class="font-bold text-slate-800 text-emerald-700">${r.rescuedAmountsSummary.humanReadable}</div>
+                </div>
+
+                <div class="mt-2 flex gap-1 text-[11px] font-semibold">
+                  <span class="text-red-600">${r.redCount} Acil (Kırmızı)</span> • 
+                  <span class="text-amber-600">${r.yellowCount} Sarı</span>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        container.innerHTML = `<div class="text-center py-6 text-red-500">Hata: ${err.message}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
+
