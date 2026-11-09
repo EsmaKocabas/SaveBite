@@ -4,10 +4,16 @@
   "description": "Gıda İsrafı ile Mücadele ve Sürdürülebilirlik Platformu",
   "main": "src/db/migrateCloud.js",
   "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
     "migrate": "node src/db/migrateCloud.js"
   },
   "dependencies": {
-    "dotenv": "^18.0.5",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.23.1"
   }
 }
